@@ -80,6 +80,26 @@ SKILLS = [
         "name": "Docker",
         "level": "Intermediate",
         "percentage": 70
+    },
+     {
+        "name": "SQL",
+        "level": "Advanced",
+        "percentage": 85
+    },
+    {
+        "name": "AWS / Cloud",
+        "level": "Intermediate",
+        "percentage": 70
+    },
+    {
+        "name": "Scikit-learn",
+        "level": "Advanced",
+        "percentage": 85
+    },
+    {
+        "name": "Docker",
+        "level": "Intermediate",
+        "percentage": 70
     }
 ]
 

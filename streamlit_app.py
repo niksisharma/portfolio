@@ -49,20 +49,6 @@ st.markdown("""
         <h1>{name}</h1>
         <div class="subtitle">{title}</div>
         <p>{tagline}</p>
-        <div class="stats-bar">
-            <div class="stat-item">
-                <span class="stat-label">Projects:</span>
-                <span class="stat-value">{projects}</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Completed:</span>
-                <span class="stat-value">{completed}</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">GPA:</span>
-                <span class="stat-value">{gpa}</span>
-            </div>
-        </div>
     </div>
 </div>
 """.format(
@@ -107,7 +93,7 @@ for idx, interest in enumerate(config.INTERESTS):
 st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
 # Featured Projects
-st.markdown('<div class="section-header">FEATURED PROJECTS</div>', unsafe_allow_html=True)
+# st.markdown('<div class="section-header">FEATURED PROJECTS</div>', unsafe_allow_html=True)
 
 # # Get featured projects
 # featured_projects = [p for p in config.PROJECTS if p.get('featured', False)]
