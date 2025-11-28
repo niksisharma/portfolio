@@ -4,9 +4,32 @@ import config
 
 st.set_page_config(
     page_title="Projects - Portfolio",
-    page_icon="🚀",
+    # page_icon="🚀",
     layout="wide"
 )
+
+# Load CSS
+def load_css():
+    css_file = Path(__file__).parent.parent / "assets" / "style.css"
+    with open(css_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css()
+
+st.markdown(f"""
+<div class="top-nav">
+    <div class="nav-container">
+        <div class="nav-brand">{config.PERSONAL_INFO['name'].upper()}.EXE</div>
+        <div class="nav-links">
+            <a class="nav-link" href="/" target="_self">Home</a>
+            <a class="nav-link" href="/Overview" target="_self">Overview</a>
+            <a class="nav-link" href="/Projects" target="_self">Projects</a>
+            <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
+            <a class="nav-link" href="/About" target="_self">About</a>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Load CSS
 def load_css():

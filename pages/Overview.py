@@ -5,7 +5,8 @@ import config
 st.set_page_config(
     page_title="Overview - Portfolio",
     page_icon="📋",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
 # Load CSS
@@ -15,6 +16,22 @@ def load_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_css()
+
+# Top Navigation Bar
+st.markdown(f"""
+<div class="top-nav">
+    <div class="nav-container">
+        <div class="nav-brand">{config.PERSONAL_INFO['name'].upper()}.EXE</div>
+        <div class="nav-links">
+            <a class="nav-link" href="/" target="_self">Home</a>
+            <a class="nav-link" href="/Overview" target="_self">Overview</a>
+            <a class="nav-link" href="/Projects" target="_self">Projects</a>
+            <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
+            <a class="nav-link" href="/About" target="_self">About</a>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Page Header
 st.markdown("""
@@ -123,7 +140,7 @@ for project in config.PROJECTS:
 
 st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-# Skills Matrix
+# Skills Matrix - NO PROFICIENCY BARS
 st.markdown('<div class="section-header">SKILLS MATRIX</div>', unsafe_allow_html=True)
 
 st.markdown("""
@@ -134,41 +151,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-cols = st.columns(2)
+cols = st.columns(4)
 
-# Group skills by category
-ml_skills = ["Python", "PyTorch", "TensorFlow", "Scikit-learn"]
-data_skills = ["SQL", "AWS / Cloud", "Docker"]
-nlp_skills = ["LangChain / LLMs"]
-
-with cols[0]:
-    st.markdown("**Machine Learning & Deep Learning**")
-    for skill in config.SKILLS:
-        if skill['name'] in ml_skills:
-            st.markdown(f"""
-            <div class="skill-card">
-                <h3>{skill['name']}</h3>
-                <div class="skill-level">Level: {skill['level']}</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: {skill['percentage']}%;">
-                        {skill['percentage']}%
-                    </div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-with cols[1]:
-    st.markdown("**Data Engineering & MLOps**")
-    for skill in config.SKILLS:
-        if skill['name'] in data_skills:
-            st.markdown(f"""
-            <div class="skill-card">
-                <h3>{skill['name']}</h3>
-                <div class="skill-level">Level: {skill['level']}</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: {skill['percentage']}%;">
-                        {skill['percentage']}%
-                    </div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+for idx, skill in enumerate(config.SKILLS):
+    with cols[idx % 4]:
+        st.markdown(f"""
+        <div class="skill-card">
+            <h3>{skill['name']}</h3>
+            <div class="skill-level">{skill['level']}</div>
+        </div>
+        """, unsafe_allow_html=True)

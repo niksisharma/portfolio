@@ -1,5 +1,4 @@
-/* Option A: Windows 95 Retro Style - Custom CSS */
-/* Project cards have WHITE backgrounds as requested */
+/* Option A: Windows 95 Retro Style - TOP NAVIGATION VERSION */
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;600;700&display=swap');
 
@@ -46,6 +45,69 @@ body, .stApp {
 footer {visibility: hidden;}
 header {visibility: hidden;}
 .stDeployButton {display: none;}
+[data-testid="stSidebar"] {display: none;}
+
+/* TOP NAVIGATION BAR */
+.top-nav {
+    background: linear-gradient(180deg, var(--primary-teal-light) 0%, var(--primary-teal) 100%);
+    border-bottom: 3px solid var(--border-black);
+    padding: 0;
+    margin: -1rem -1rem 2rem -1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.nav-brand {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    border-right: 2px solid rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+}
+
+.nav-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
+    display: block;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.nav-link:active {
+    background-color: rgba(0,0,0,0.1);
+    box-shadow: inset 2px 2px 3px rgba(0,0,0,0.2);
+}
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -76,40 +138,6 @@ h3 {
 p {
     line-height: 1.6;
     color: var(--text-gray);
-}
-
-/* Navigation Bar - Windows 95 Style */
-[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, var(--primary-teal-light) 0%, var(--primary-teal) 100%);
-    border-right: 3px solid var(--border-black);
-    padding: 0;
-}
-
-[data-testid="stSidebar"] > div:first-child {
-    padding: 0;
-}
-
-[data-testid="stSidebar"] .sidebar-content {
-    background: linear-gradient(180deg, var(--primary-teal-light) 0%, var(--primary-teal) 100%);
-}
-
-/* Sidebar Navigation Links */
-[data-testid="stSidebar"] a {
-    color: var(--text-dark);
-    text-decoration: none;
-    padding: 0.8rem 1.5rem;
-    display: block;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    transition: all 0.2s;
-    text-shadow: 1px 1px 0px rgba(255,255,255,0.3);
-}
-
-[data-testid="stSidebar"] a:hover {
-    background-color: rgba(255,255,255,0.2);
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
 }
 
 /* Hero Window */
@@ -196,55 +224,29 @@ p {
     color: var(--primary-teal);
 }
 
-/* Skill Cards */
+/* SKILLS WITHOUT PROFICIENCY BARS */
 .skill-card {
     background-color: var(--bg-tan);
     border: 3px solid var(--border-black);
     padding: 1.5rem;
     box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .skill-card h3 {
     font-family: 'VT323', monospace;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
     color: var(--text-dark);
 }
 
 .skill-level {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-}
-
-/* Progress Bars */
-.progress-bar {
-    background-color: var(--bg-darker);
-    border: 2px solid var(--border-black);
-    height: 24px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 0.5rem;
-}
-
-.progress-fill {
-    background: repeating-linear-gradient(
-        90deg,
-        var(--primary-teal),
-        var(--primary-teal) 10px,
-        var(--primary-teal-light) 10px,
-        var(--primary-teal-light) 20px
-    );
-    height: 100%;
-    border-right: 2px solid var(--border-black);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--accent-orange);
     font-weight: bold;
-    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Interest Cards */
@@ -436,6 +438,14 @@ p {
 @media (max-width: 768px) {
     .project-display {
         grid-template-columns: 1fr;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        width: 100%;
     }
     
     h1 {

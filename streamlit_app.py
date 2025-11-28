@@ -7,7 +7,7 @@ st.set_page_config(
     page_title=f"{config.PERSONAL_INFO['name']} - Portfolio",
     page_icon="🖥️",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 # Load custom CSS
@@ -17,6 +17,22 @@ def load_css():
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_css()
+
+# Top Navigation Bar
+st.markdown(f"""
+<div class="top-nav">
+    <div class="nav-container">
+        <div class="nav-brand">{config.PERSONAL_INFO['name'].upper()}.EXE</div>
+        <div class="nav-links">
+            <a class="nav-link" href="/" target="_self">Home</a>
+            <a class="nav-link" href="/Overview" target="_self">Overview</a>
+            <a class="nav-link" href="/Projects" target="_self">Projects</a>
+            <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
+            <a class="nav-link" href="/About" target="_self">About</a>
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Hero Section with Window Style
 st.markdown("""
@@ -61,22 +77,17 @@ st.markdown("""
 # Pixel Divider
 st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-# Skills Section
+# Skills Section - NO PROFICIENCY BARS
 st.markdown('<div class="section-header">TECHNICAL SKILLS</div>', unsafe_allow_html=True)
 
-# Display skills in 3 columns
-cols = st.columns(3)
+# Display skills in 4 columns
+cols = st.columns(4)
 for idx, skill in enumerate(config.SKILLS):
-    with cols[idx % 3]:
+    with cols[idx % 4]:
         st.markdown(f"""
         <div class="skill-card">
             <h3>{skill['name']}</h3>
-            <div class="skill-level">Proficiency Level: {skill['level']}</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: {skill['percentage']}%;">
-                    {skill['percentage']}%
-                </div>
-            </div>
+            <div class="skill-level">{skill['level']}</div>
         </div>
         """, unsafe_allow_html=True)
 
