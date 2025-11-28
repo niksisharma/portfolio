@@ -69,9 +69,6 @@ st.markdown("""
     name=config.PERSONAL_INFO['name'],
     title=config.PERSONAL_INFO['title'],
     tagline=config.PERSONAL_INFO['tagline'],
-    projects=config.STATS['projects'],
-    completed=config.STATS['completed'],
-    gpa=config.STATS['gpa']
 ), unsafe_allow_html=True)
 
 # Pixel Divider
@@ -87,7 +84,6 @@ for idx, skill in enumerate(config.SKILLS):
         st.markdown(f"""
         <div class="skill-card">
             <h3>{skill['name']}</h3>
-            <div class="skill-level">{skill['level']}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -113,46 +109,46 @@ st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 # Featured Projects
 st.markdown('<div class="section-header">FEATURED PROJECTS</div>', unsafe_allow_html=True)
 
-# Get featured projects
-featured_projects = [p for p in config.PROJECTS if p.get('featured', False)]
+# # Get featured projects
+# featured_projects = [p for p in config.PROJECTS if p.get('featured', False)]
 
-for project in featured_projects[:3]:  # Show top 3 featured
-    # Tech stack tags HTML
-    tech_tags = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack']])
+# for project in featured_projects[:3]:  
+#     # Tech stack tags HTML
+#     tech_tags = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack']])
     
-    st.markdown(f"""
-    <div class="project-display">
-        <div class="project-image">
-            <div class="project-placeholder">IMAGE</div>
-        </div>
-        <div class="project-info">
-            <div class="project-header">
-                <h3>{project['title']}</h3>
-                <div class="project-meta">{project['date']} | {project['status']}</div>
-            </div>
-            <div class="project-body">
-                <p>{project['description']}</p>
-                <div class="tech-label">Built With:</div>
-                <div class="tech-tags">
-                    {tech_tags}
-                </div>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+#     st.markdown(f"""
+#     <div class="project-display">
+#         <div class="project-image">
+#             <div class="project-placeholder">IMAGE</div>
+#         </div>
+#         <div class="project-info">
+#             <div class="project-header">
+#                 <h3>{project['title']}</h3>
+#                 <div class="project-meta">{project['date']} | {project['status']}</div>
+#             </div>
+#             <div class="project-body">
+#                 <p>{project['description']}</p>
+#                 <div class="tech-label">Built With:</div>
+#                 <div class="tech-tags">
+#                     {tech_tags}
+#                 </div>
+#             </div>
+#         </div>
+#     </div>
+#     """, unsafe_allow_html=True)
     
-    # View Project button
-    if project.get('github') or project.get('demo'):
-        col1, col2, col3 = st.columns([1, 1, 4])
-        with col1:
-            if project.get('github'):
-                st.link_button("GitHub →", project['github'], use_container_width=True)
-        with col2:
-            if project.get('demo'):
-                st.link_button("Demo →", project['demo'], use_container_width=True)
+#     # View Project button
+#     if project.get('github') or project.get('demo'):
+#         col1, col2, col3 = st.columns([1, 1, 4])
+#         with col1:
+#             if project.get('github'):
+#                 st.link_button("GitHub →", project['github'], use_container_width=True)
+#         with col2:
+#             if project.get('demo'):
+#                 st.link_button("Demo →", project['demo'], use_container_width=True)
 
-# Pixel Divider
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# # Pixel Divider
+# st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
 # Quick Links
 st.markdown('<div class="section-header">CONNECT</div>', unsafe_allow_html=True)
@@ -202,7 +198,7 @@ with col4:
 st.markdown("""
 <div style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 2px dashed var(--primary-teal);">
     <p style="color: var(--text-light); font-size: 0.85rem;">
-        Built with Streamlit | © 2025 {name} | MS Applied Data Science @ Syracuse University
+        Built with Streamlit | © 2025 {name}
     </p>
 </div>
 """.format(name=config.PERSONAL_INFO['name']), unsafe_allow_html=True)
