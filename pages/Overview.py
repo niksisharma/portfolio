@@ -1,186 +1,174 @@
-"""
-Overview Page
-Program learning outcomes and portfolio overview
-"""
 import streamlit as st
 from pathlib import Path
-import sys
-
-sys.path.append(str(Path(__file__).parent.parent))
-from utils.helpers import *
 import config
 
-set_page_config(page_title="Overview", page_icon="📚")
+st.set_page_config(
+    page_title="Overview - Portfolio",
+    page_icon="📋",
+    layout="wide"
+)
+
+# Load CSS
+def load_css():
+    css_file = Path(__file__).parent.parent / "assets" / "style.css"
+    with open(css_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 load_css()
 
-render_header("📚 Portfolio Overview", "MS in Applied Data Science Program")
+# Page Header
+st.markdown("""
+<div class="hero-window">
+    <div class="window-titlebar">
+        <div class="window-title">OVERVIEW.SYS</div>
+        <div class="window-buttons">
+            <div class="window-btn"></div>
+            <div class="window-btn"></div>
+            <div class="window-btn"></div>
+        </div>
+    </div>
+    <div class="window-content">
+        <h1>Portfolio Overview</h1>
+        <p>A comprehensive overview of my graduate program learning outcomes and project portfolio.</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-# Program Description
-st.markdown("<h2>🎓 Program Information</h2>", unsafe_allow_html=True)
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-col1, col2 = st.columns([2, 1])
+# Learning Outcomes Section
+st.markdown('<div class="section-header">LEARNING OUTCOMES</div>', unsafe_allow_html=True)
+
+st.markdown(f"""
+<div class="project-info" style="margin-bottom: 2rem;">
+    <div class="project-body">
+        {config.LEARNING_OUTCOMES.replace(chr(10), '<br>')}
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+
+# Projects Overview
+st.markdown('<div class="section-header">ALL PROJECTS</div>', unsafe_allow_html=True)
+
+# Stats
+col1, col2, col3, col4 = st.columns(4)
+
+completed = len([p for p in config.PROJECTS if p['status'] == 'Completed'])
+in_progress = len([p for p in config.PROJECTS if p['status'] == 'In Progress'])
 
 with col1:
     st.markdown(f"""
-    **Program:** {config.PROGRAM_INFO['program_name']}  
-    **University:** {config.PROGRAM_INFO['university']}  
-    **Graduation:** {config.PROGRAM_INFO['graduation_date']}  
-    **GPA:** {config.PROGRAM_INFO['gpa']}
-    
-    The MS in Applied Data Science program provides comprehensive training in modern data science 
-    methodologies, machine learning systems, and real-world applications. Through rigorous coursework 
-    and hands-on projects, students develop expertise in:
-    
-    - Advanced machine learning and deep learning architectures
-    - ML systems engineering and deployment
-    - Data engineering and infrastructure
-    - Statistical modeling and analysis
-    - Applied research and problem-solving
-    - Professional communication and collaboration
-    """)
+    <div class="interest-item">
+        <div class="interest-icon" style="font-size: 3rem;">7</div>
+        <h3>Total Projects</h3>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col2:
-    render_info_box(
-        f"""
-        <strong>Portfolio Highlights:</strong><br>
-        • {len(config.PROJECTS)} Major Projects<br>
-        • {len([p for p in config.PROJECTS if p['status'] == 'Completed'])} Completed<br>
-        • {len([p for p in config.PROJECTS if p.get('interactive', False)])} Interactive Demos<br>
-        • Multiple Industry Experiences
-        """,
-        box_type="info"
-    )
+    st.markdown(f"""
+    <div class="interest-item">
+        <div class="interest-icon" style="font-size: 3rem;">{completed}</div>
+        <h3>Completed</h3>
+    </div>
+    """, unsafe_allow_html=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
+with col3:
+    st.markdown(f"""
+    <div class="interest-item">
+        <div class="interest-icon" style="font-size: 3rem;">{in_progress}</div>
+        <h3>In Progress</h3>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Learning Outcomes
-st.markdown("<h2>🎯 Program Learning Outcomes</h2>", unsafe_allow_html=True)
+with col4:
+    st.markdown(f"""
+    <div class="interest-item">
+        <div class="interest-icon" style="font-size: 3rem;">3</div>
+        <h3>Featured</h3>
+    </div>
+    """, unsafe_allow_html=True)
 
-st.markdown("""
-Below are the key learning outcomes of the MS in Applied Data Science program, along with 
-specific projects that demonstrate achievement of each outcome.
-""")
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-for i, outcome in enumerate(config.PROGRAM_INFO["learning_outcomes"], 1):
-    with st.expander(f"**Learning Outcome {i}: {outcome['outcome']}**", expanded=False):
-        st.markdown(f"**Description:** {outcome['description']}")
-        
-        st.markdown("**Projects demonstrating this outcome:**")
-        for project_title in outcome['projects']:
-            # Find the actual project
-            project = next((p for p in config.PROJECTS if p['title'] == project_title), None)
-            if project:
-                st.markdown(f"- **{project_title}** ({project['date']})")
-            else:
-                st.markdown(f"- {project_title}")
-        
-        st.markdown("---")
-        st.markdown("*Detailed explanation of how this outcome was achieved can be found in the Reflection section.*")
+# Projects Table
+st.markdown('<div class="section-header">PROJECT CATALOG</div>', unsafe_allow_html=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Projects Overview by Category
-st.markdown("<h2>📂 Projects by Category</h2>", unsafe_allow_html=True)
-
-# Group projects by category
-categories = {}
 for project in config.PROJECTS:
-    category = project.get("category", "Other")
-    if category not in categories:
-        categories[category] = []
-    categories[category].append(project)
-
-# Display projects by category
-for category, projects in categories.items():
-    st.markdown(f"### {category}")
-    
-    for project in projects:
-        col1, col2, col3 = st.columns([3, 1, 1])
+    # Create collapsible section for each project
+    with st.expander(f"🖥️ {project['title']} - {project['status']}"):
+        col1, col2 = st.columns([2, 1])
         
         with col1:
-            st.markdown(f"**{project['title']}**")
-            st.markdown(f"<p style='color: {config.THEME['text_muted']}; font-size: 0.9rem;'>{project['short_description']}</p>", 
-                       unsafe_allow_html=True)
+            st.markdown(f"**{project['subtitle']}**")
+            st.markdown(f"*{project['date']}*")
+            st.markdown(project['description'])
+            
+            # Tech stack
+            st.markdown("**Technologies:**")
+            tech_badges = " ".join([f"`{tech}`" for tech in project['tech_stack']])
+            st.markdown(tech_badges)
         
         with col2:
-            status_color = config.THEME['secondary'] if project['status'] == 'Completed' else config.THEME['accent2']
-            st.markdown(f"<p style='color: {status_color}; font-weight: 600;'>{project['status']}</p>", 
-                       unsafe_allow_html=True)
-        
-        with col3:
-            if st.button("View", key=f"view_{project['id']}"):
-                st.info(f"Navigate to Projects page → {project['title']}")
-        
-        st.markdown("---")
+            st.markdown("**Status**")
+            status_color = "#00A9A5" if project['status'] == "Completed" else "#FF6700"
+            st.markdown(f"<span style='color: {status_color}; font-weight: bold;'>{project['status']}</span>", unsafe_allow_html=True)
+            
+            if project.get('github'):
+                st.link_button("View on GitHub", project['github'], use_container_width=True)
+            
+            if project.get('demo'):
+                st.link_button("Live Demo", project['demo'], use_container_width=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-# How Learning Outcomes Were Achieved
-st.markdown("<h2>🔗 Mapping: Projects ↔ Learning Outcomes</h2>", unsafe_allow_html=True)
+# Skills Matrix
+st.markdown('<div class="section-header">SKILLS MATRIX</div>', unsafe_allow_html=True)
 
 st.markdown("""
-This section provides a high-level overview of how specific projects contributed to achieving 
-the program learning outcomes. For detailed explanations and reflections, please see the 
-**Reflection** page.
-""")
+<div class="project-info">
+    <div class="project-body">
+        <p>Below is a comprehensive overview of my technical skills developed through coursework and projects:</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-# Create a simple table/matrix
-st.markdown("### Key Projects and Their Learning Outcome Contributions")
+cols = st.columns(2)
 
-# Example format - you can customize this
-project_outcome_map = {
-    "RAG-ception": ["Advanced ML/DL", "ML Systems", "Research & Problem-Solving"],
-    "Aurora Prediction": ["Advanced ML/DL", "ML Systems", "Data Engineering"],
-    "CapsNet Classifier": ["Advanced ML/DL", "Research & Problem-Solving"],
-    "Airbnb Prediction": ["Advanced ML/DL", "Data Engineering"],
-    "CuseBus Platform": ["Data Engineering", "ML Systems"],
-}
+# Group skills by category
+ml_skills = ["Python", "PyTorch", "TensorFlow", "Scikit-learn"]
+data_skills = ["SQL", "AWS / Cloud", "Docker"]
+nlp_skills = ["LangChain / LLMs"]
 
-for project_name, outcomes in project_outcome_map.items():
-    st.markdown(f"**{project_name}**")
-    st.markdown(f"*Outcomes addressed:* {', '.join(outcomes)}")
-    st.markdown("")
+with cols[0]:
+    st.markdown("**Machine Learning & Deep Learning**")
+    for skill in config.SKILLS:
+        if skill['name'] in ml_skills:
+            st.markdown(f"""
+            <div class="skill-card">
+                <h3>{skill['name']}</h3>
+                <div class="skill-level">Level: {skill['level']}</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {skill['percentage']}%;">
+                        {skill['percentage']}%
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
 
-render_info_box(
-    """
-    <strong>💡 Note:</strong> The detailed narrative of how each project contributed to my learning, 
-    including challenges faced and insights gained, is available in the <strong>Reflection</strong> section.
-    """,
-    box_type="info"
-)
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Additional Context
-st.markdown("<h2>📋 Additional Information</h2>", unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown("### 🏢 Industry Experience")
-    st.markdown("""
-    - **Continental Automotive** - DevOps Engineer (1 year)
-    - **Cirruslabs** - Software Developer & ML Research Engineer (1+ year)
-    - **DRDO** - Research Intern (10 months)
-    """)
-
-with col2:
-    st.markdown("### 📚 Key Competencies Developed")
-    st.markdown("""
-    - ML/AI system design and deployment
-    - Research methodology and publication
-    - Cross-functional team collaboration
-    - Technical communication and documentation
-    """)
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Navigation hint
-st.markdown("### 🗺️ Navigate This Portfolio")
-st.markdown("""
-- **Projects**: Detailed descriptions and demos of each project
-- **Reflection**: In-depth blog post and video about my program experience
-- **About**: Personal background, skills, and contact information
-
-Use the sidebar to navigate between sections!
-""")
+with cols[1]:
+    st.markdown("**Data Engineering & MLOps**")
+    for skill in config.SKILLS:
+        if skill['name'] in data_skills:
+            st.markdown(f"""
+            <div class="skill-card">
+                <h3>{skill['name']}</h3>
+                <div class="skill-level">Level: {skill['level']}</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: {skill['percentage']}%;">
+                        {skill['percentage']}%
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)

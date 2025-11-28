@@ -1,142 +1,197 @@
-"""
-Portfolio Home Page
-Main entry point for the portfolio website
-"""
 import streamlit as st
 from pathlib import Path
-import sys
-
-# Add utils to path
-sys.path.append(str(Path(__file__).parent))
-from utils.helpers import *
 import config
 
-# Page configuration
-set_page_config(page_title=f"{config.PERSONAL_INFO['name']} - Portfolio", page_icon="🏠")
+# Page config
+st.set_page_config(
+    page_title=f"{config.PERSONAL_INFO['name']} - Portfolio",
+    page_icon="🖥️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Load custom CSS
+def load_css():
+    css_file = Path(__file__).parent / "assets" / "style.css"
+    with open(css_file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 load_css()
 
-# Hero Section
-st.markdown(f"""
-<div class="hero">
-    <h1>{config.PERSONAL_INFO['name']}</h1>
-    <p style="font-size: 1.5rem; color: {config.THEME['primary']}; font-weight: 600;">
-        {config.PERSONAL_INFO['tagline']}
-    </p>
-    <p style="font-size: 1.1rem; color: {config.THEME['text']}; max-width: 700px; margin: 1.5rem auto;">
-        {config.PERSONAL_INFO['title']} | {config.PROGRAM_INFO['university']}
-    </p>
+# Hero Section with Window Style
+st.markdown("""
+<div class="hero-window">
+    <div class="window-titlebar">
+        <div class="window-title">WELCOME.SYS</div>
+        <div class="window-buttons">
+            <div class="window-btn"></div>
+            <div class="window-btn"></div>
+            <div class="window-btn"></div>
+        </div>
+    </div>
+    <div class="window-content">
+        <h1>{name}</h1>
+        <div class="subtitle">{title}</div>
+        <p>{tagline}</p>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-label">Projects:</span>
+                <span class="stat-value">{projects}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Completed:</span>
+                <span class="stat-value">{completed}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">GPA:</span>
+                <span class="stat-value">{gpa}</span>
+            </div>
+        </div>
+    </div>
 </div>
-""", unsafe_allow_html=True)
+""".format(
+    name=config.PERSONAL_INFO['name'],
+    title=config.PERSONAL_INFO['title'],
+    tagline=config.PERSONAL_INFO['tagline'],
+    projects=config.STATS['projects'],
+    completed=config.STATS['completed'],
+    gpa=config.STATS['gpa']
+), unsafe_allow_html=True)
 
-# Profile image (if provided)
-if config.PERSONAL_INFO["profile_image"]:
-    try:
-        profile_path = Path(__file__).parent / "assets" / "images" / config.PERSONAL_INFO["profile_image"]
-        if profile_path.exists():
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                st.image(str(profile_path), width=250, output_format="auto")
-    except:
-        pass
+# Pixel Divider
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-# Social Links
-render_social_links()
+# Skills Section
+st.markdown('<div class="section-header">TECHNICAL SKILLS</div>', unsafe_allow_html=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
+# Display skills in 3 columns
+cols = st.columns(3)
+for idx, skill in enumerate(config.SKILLS):
+    with cols[idx % 3]:
+        st.markdown(f"""
+        <div class="skill-card">
+            <h3>{skill['name']}</h3>
+            <div class="skill-level">Proficiency Level: {skill['level']}</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {skill['percentage']}%;">
+                    {skill['percentage']}%
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
-# About Section
-st.markdown("<h2>👋 About Me</h2>", unsafe_allow_html=True)
-st.markdown(config.PERSONAL_INFO['bio'])
+# Pixel Divider
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
 
-st.markdown("<hr>", unsafe_allow_html=True)
+# Research Interests
+st.markdown('<div class="section-header">RESEARCH INTERESTS</div>', unsafe_allow_html=True)
 
-# Quick Stats
-st.markdown("<h2>📊 At a Glance</h2>", unsafe_allow_html=True)
+cols = st.columns(3)
+for idx, interest in enumerate(config.INTERESTS):
+    with cols[idx % 3]:
+        st.markdown(f"""
+        <div class="interest-item">
+            <div class="interest-icon">{interest['icon']}</div>
+            <h3>{interest['name']}</h3>
+        </div>
+        """, unsafe_allow_html=True)
+
+# Pixel Divider
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+
+# Featured Projects
+st.markdown('<div class="section-header">FEATURED PROJECTS</div>', unsafe_allow_html=True)
+
+# Get featured projects
+featured_projects = [p for p in config.PROJECTS if p.get('featured', False)]
+
+for project in featured_projects[:3]:  # Show top 3 featured
+    # Tech stack tags HTML
+    tech_tags = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack']])
+    
+    st.markdown(f"""
+    <div class="project-display">
+        <div class="project-image">
+            <div class="project-placeholder">IMAGE</div>
+        </div>
+        <div class="project-info">
+            <div class="project-header">
+                <h3>{project['title']}</h3>
+                <div class="project-meta">{project['date']} | {project['status']}</div>
+            </div>
+            <div class="project-body">
+                <p>{project['description']}</p>
+                <div class="tech-label">Built With:</div>
+                <div class="tech-tags">
+                    {tech_tags}
+                </div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # View Project button
+    if project.get('github') or project.get('demo'):
+        col1, col2, col3 = st.columns([1, 1, 4])
+        with col1:
+            if project.get('github'):
+                st.link_button("GitHub →", project['github'], use_container_width=True)
+        with col2:
+            if project.get('demo'):
+                st.link_button("Demo →", project['demo'], use_container_width=True)
+
+# Pixel Divider
+st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+
+# Quick Links
+st.markdown('<div class="section-header">CONNECT</div>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    render_metric("Projects", str(len(config.PROJECTS)), "🚀")
+    if config.PERSONAL_INFO.get('email'):
+        st.markdown(f"""
+        <div class="interest-item">
+            <div class="interest-icon">📧</div>
+            <h3>Email</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Send Email", f"mailto:{config.PERSONAL_INFO['email']}", use_container_width=True)
 
 with col2:
-    completed_projects = len([p for p in config.PROJECTS if p["status"] == "Completed"])
-    render_metric("Completed", str(completed_projects), "✅")
+    if config.PERSONAL_INFO.get('linkedin'):
+        st.markdown(f"""
+        <div class="interest-item">
+            <div class="interest-icon">💼</div>
+            <h3>LinkedIn</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Connect", config.PERSONAL_INFO['linkedin'], use_container_width=True)
 
 with col3:
-    render_metric("GPA", config.PROGRAM_INFO["gpa"], "🎓")
+    if config.PERSONAL_INFO.get('github'):
+        st.markdown(f"""
+        <div class="interest-item">
+            <div class="interest-icon">💻</div>
+            <h3>GitHub</h3>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Follow", config.PERSONAL_INFO['github'], use_container_width=True)
 
 with col4:
-    publications = 1  # Update based on your actual publications
-    render_metric("Publications", str(publications), "📄")
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Featured Projects
-st.markdown("<h2>⭐ Featured Projects</h2>", unsafe_allow_html=True)
-
-featured_projects = [p for p in config.PROJECTS if p.get("featured", False)]
-
-if featured_projects:
-    for project in featured_projects:
-        col1, col2 = st.columns([3, 1])
-        
-        with col1:
-            render_project_card(project)
-        
-        with col2:
-            st.markdown("<br>", unsafe_allow_html=True)
-            if st.button(f"View Details", key=f"btn_{project['id']}"):
-                st.info(f"Navigate to Projects page and select {project['title']}")
-            
-            if project["github"]:
-                st.markdown(f"[GitHub →]({project['github']})")
-else:
-    st.info("Featured projects will appear here once configured.")
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Research Interests
-st.markdown("<h2>🔬 Research Interests</h2>", unsafe_allow_html=True)
-
-interests = [
-    "**Machine Learning Systems:** Building scalable, production-ready ML infrastructure",
-    "**Responsible AI:** Developing fair, transparent, and human-centered AI systems",
-    "**Social Impact Applications:** ML for healthcare, accessibility, and scientific forecasting",
-    "**Human-Computer Interaction:** Bridging ML research and real-world deployment",
-]
-
-for interest in interests:
-    st.markdown(f"- {interest}")
-
-st.markdown("<hr>", unsafe_allow_html=True)
-
-# Call to Action
-st.markdown("<h2>📬 Let's Connect</h2>", unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
-
-with col1:
     st.markdown(f"""
-    I'm currently seeking opportunities in:
-    - **PhD Programs** in ML/AI/HCI
-    - **Research Positions** in AI systems
-    - **ML Engineering** roles with social impact
-    """)
-
-with col2:
-    st.markdown(f"""
-    **Get in touch:**
-    - 📧 Email: {config.PERSONAL_INFO['email']}
-    - 💼 LinkedIn: [Profile]({config.PERSONAL_INFO['linkedin']})
-    - 💻 GitHub: [Profile]({config.PERSONAL_INFO['github']})
-    """)
-
-st.markdown("<hr>", unsafe_allow_html=True)
+    <div class="interest-item">
+        <div class="interest-icon">📄</div>
+        <h3>Resume</h3>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Download", "#", use_container_width=True)
 
 # Footer
-st.markdown(f"""
-<div style="text-align: center; color: {config.THEME['text_muted']}; padding: 2rem;">
-    <p>Built with Streamlit • {config.PROGRAM_INFO['university']} • {config.PROGRAM_INFO['graduation_date']}</p>
-    <p style="font-size: 0.85rem;">Last updated: November 2025</p>
+st.markdown("""
+<div style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 2px dashed var(--primary-teal);">
+    <p style="color: var(--text-light); font-size: 0.85rem;">
+        Built with Streamlit | © 2025 {name} | MS Applied Data Science @ Syracuse University
+    </p>
 </div>
-""", unsafe_allow_html=True)
+""".format(name=config.PERSONAL_INFO['name']), unsafe_allow_html=True)

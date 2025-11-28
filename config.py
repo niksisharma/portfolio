@@ -1,283 +1,291 @@
 """
 Portfolio Configuration File
-Update this file with your personal information and preferences
+Update this file with your personal information
 """
 
-# ==================== PERSONAL INFORMATION ====================
+# Personal Information
 PERSONAL_INFO = {
     "name": "Your Name",
-    "title": "MS in Applied Data Science Candidate",
-    "tagline": "From Hardware to Human-Centered AI",
+    "title": "MS Applied Data Science | Syracuse University",
+    "tagline": "Building robust, fair, and human-centered AI/ML systems",
     "email": "your.email@example.com",
-    "phone": "(XXX) XXX-XXXX",
+    "phone": "+1 (123) 456-7890",
     "location": "Syracuse, NY",
-    
-    # Social Links
     "linkedin": "https://linkedin.com/in/yourprofile",
     "github": "https://github.com/yourusername",
-    "scholar": "",  # Optional: Google Scholar
-    "twitter": "",  # Optional
-    
-    # About Me (short bio for homepage)
-    "bio": """
-    Building robust, fair, and human-centered AI/ML systems at the intersection of machine learning, 
-    human-computer interaction, and responsible AI. Focused on developing scalable ML systems for 
-    social impact applications including healthcare, accessibility, and scientific forecasting.
-    """,
-    
-    # Profile image (place in assets/images/)
-    "profile_image": "profile.jpg",  # or None if not using
+    "website": "https://yourwebsite.com"
 }
 
-# ==================== THEME & STYLING ====================
-THEME = {
-    # Main colors
-    "background": "#1A1A2E",
-    "primary": "#BB86FC",      # Soft Purple/Lavender
-    "secondary": "#03DAC6",     # Mint/Teal
-    "accent1": "#FF6B9D",       # Coral/Salmon
-    "accent2": "#FFD93D",       # Soft Yellow
-    "text": "#E8E8E8",          # Off-white
-    "text_muted": "#A0A0A0",    # Gray
-    
-    # Fonts
-    "font_family": "'Inter', 'Segoe UI', sans-serif",
-    "heading_font": "'Poppins', 'Inter', sans-serif",
+# Stats for Homepage
+STATS = {
+    "projects": 7,
+    "completed": 5,
+    "gpa": "3.87",
+    "publications": 1
 }
 
-# ==================== PROGRAM INFORMATION ====================
-PROGRAM_INFO = {
-    "program_name": "Master of Science in Applied Data Science",
-    "university": "Syracuse University",
-    "graduation_date": "December 2025",
-    "gpa": "3.875/4.0",
-    
-    # Program Learning Outcomes - UPDATE THESE WITH YOUR ACTUAL OUTCOMES
-    "learning_outcomes": [
-        {
-            "outcome": "Advanced Machine Learning & Deep Learning",
-            "description": "Develop expertise in modern ML/DL architectures and their applications",
-            "projects": ["CapsNet Image Classifier", "Aurora Prediction", "Airbnb Occupancy"],
-        },
-        {
-            "outcome": "ML Systems & Infrastructure",
-            "description": "Design and deploy scalable, production-ready ML systems",
-            "projects": ["RAG-ception", "Aurora Prediction"],
-        },
-        {
-            "outcome": "Data Engineering & Management",
-            "description": "Build robust data pipelines and databases for ML applications",
-            "projects": ["CuseBus Platform", "Energy Forecasting"],
-        },
-        {
-            "outcome": "Applied Research & Problem-Solving",
-            "description": "Conduct rigorous research and develop novel solutions to real-world problems",
-            "projects": ["RAG-ception", "CapsNet", "Medical Imaging"],
-        },
-        {
-            "outcome": "Communication & Collaboration",
-            "description": "Effectively communicate technical findings to diverse audiences",
-            "projects": ["All projects include documentation and presentations"],
-        },
-    ]
+# Theme Colors - Option A: Windows 95 Style
+COLORS = {
+    "bg_beige": "#F4E4C1",
+    "bg_tan": "#E8D8B8",
+    "bg_darker": "#D4C4A1",
+    "primary_teal": "#00A9A5",
+    "primary_teal_light": "#00C9C4",
+    "accent_orange": "#FF6700",
+    "text_dark": "#2B2B2B",
+    "text_gray": "#5A5A5A",
+    "text_light": "#666666",
+    "border_black": "#000000",
+    "white": "#FFFFFF"
 }
 
-# ==================== PROJECTS CONFIGURATION ====================
-PROJECTS = [
+# Skills
+SKILLS = [
     {
-        "id": "rag_ception",
-        "title": "RAG-ception: Automated Research Knowledge Management",
-        "category": "ML Systems & Infrastructure",
-        "tags": ["LLMs", "RAG", "Knowledge Graphs", "NLP", "Research Tools"],
-        "status": "In Progress",
-        "date": "Oct 2025 - Dec 2025",
-        "github": "https://github.com/yourusername/rag-ception",
-        "demo": None,  # Will be internal interactive page
-        "thumbnail": "rag_ception_thumb.jpg",
-        "short_description": "End-to-end ML system to automatically track, summarize, and connect RAG/LLM research papers from arXiv",
-        "featured": True,
-        "interactive": True,
+        "name": "Python",
+        "level": "Advanced",
+        "percentage": 90
     },
     {
-        "id": "aurora_prediction",
-        "title": "Aurora Prediction: Geomagnetic Activity Forecasting",
-        "category": "ML Systems & Infrastructure",
-        "tags": ["LSTM", "Time Series", "Deep Learning", "Forecasting", "Scientific ML"],
+        "name": "PyTorch",
+        "level": "Advanced",
+        "percentage": 85
+    },
+    {
+        "name": "TensorFlow",
+        "level": "Advanced",
+        "percentage": 80
+    },
+    {
+        "name": "LangChain / LLMs",
+        "level": "Intermediate",
+        "percentage": 75
+    },
+    {
+        "name": "SQL",
+        "level": "Advanced",
+        "percentage": 85
+    },
+    {
+        "name": "AWS / Cloud",
+        "level": "Intermediate",
+        "percentage": 70
+    },
+    {
+        "name": "Scikit-learn",
+        "level": "Advanced",
+        "percentage": 85
+    },
+    {
+        "name": "Docker",
+        "level": "Intermediate",
+        "percentage": 70
+    }
+]
+
+# Research Interests
+INTERESTS = [
+    {"icon": "🖥️", "name": "ML Systems"},
+    {"icon": "🧠", "name": "NLP & LLMs"},
+    {"icon": "⚙️", "name": "MLOps"},
+    {"icon": "🤝", "name": "Human-AI"},
+    {"icon": "🌍", "name": "Social Impact"},
+    {"icon": "🔬", "name": "Research"}
+]
+
+# Projects
+PROJECTS = [
+    {
+        "id": "rag-ception",
+        "title": "RAG-ception",
+        "subtitle": "Automated Research Knowledge Management",
+        "date": "Oct 2025 - Dec 2025",
         "status": "In Progress",
+        "description": "End-to-end ML system to automatically track, summarize, and connect RAG/LLM research papers from arXiv. Fine-tuning LLMs to generate structured research summaries with consistent schema. Building dynamic knowledge graph using Graphiti API to identify conceptual relationships and citation networks across 500+ papers.",
+        "tech_stack": ["Python", "PyTorch", "LangChain", "Graphiti", "ChromaDB", "Streamlit"],
+        "image": "placeholder",  # Replace with actual image path
+        "github": "https://github.com/yourusername/rag-ception",
+        "demo": None,
+        "featured": True
+    },
+    {
+        "id": "aurora-prediction",
+        "title": "Aurora Prediction",
+        "subtitle": "Geomagnetic Activity Forecasting",
         "date": "Fall 2025",
+        "status": "In Progress",
+        "description": "LSTM-based deep learning model to predict geomagnetic activity (Kp index) for aurora visibility forecasting. Implementing multi-horizon forecasting pipeline predicting Kp index at 1h, 3h, 6h, and 12h intervals using time-series data from solar wind parameters and geomagnetic measurements.",
+        "tech_stack": ["TensorFlow", "Keras", "LSTM", "Python", "Time Series"],
+        "image": "placeholder",
         "github": "https://github.com/yourusername/aurora-prediction",
         "demo": None,
-        "thumbnail": "aurora_thumb.jpg",
-        "short_description": "LSTM-based deep learning model to predict geomagnetic activity (Kp index) for aurora visibility forecasting",
-        "featured": True,
-        "interactive": True,
+        "featured": True
     },
     {
         "id": "capsnet",
-        "title": "Capsule Network Image Classifier (CapsNet & Hybrid CapsViT)",
-        "category": "Applied Machine Learning",
-        "tags": ["Computer Vision", "Deep Learning", "PyTorch", "CapsNet", "ViT"],
-        "status": "Completed",
+        "title": "CapsNet Classifier",
+        "subtitle": "Advanced Image Classification",
         "date": "Spring 2025",
-        "github": "https://github.com/yourusername/capsnet-classifier",
+        "status": "Completed",
+        "description": "Re-implemented and extended CapsNet architecture, training on CIFAR-100 (60K images, 100 classes) to investigate pose-aware feature representations. Achieved ~2pp higher top-1 accuracy than ResNet-34 baseline while using ~40% fewer parameters. Proposed Hybrid Capsule + Vision Transformer variant reducing training time by ~30%.",
+        "tech_stack": ["PyTorch", "Computer Vision", "Deep Learning", "Python"],
+        "image": "placeholder",
+        "github": "https://github.com/yourusername/capsnet",
         "demo": None,
-        "thumbnail": "capsnet_thumb.jpg",
-        "short_description": "Re-implemented and extended CapsNet architecture, achieving ~2pp higher accuracy than ResNet-34 with ~40% fewer parameters",
-        "featured": True,
-        "interactive": False,
+        "featured": True
     },
     {
-        "id": "airbnb",
-        "title": "Airbnb Occupancy Prediction & Revenue Optimization",
-        "category": "Applied Machine Learning",
-        "tags": ["Neural Networks", "Regression", "Feature Engineering", "TensorFlow"],
+        "id": "airbnb-occupancy",
+        "title": "Airbnb Occupancy Prediction",
+        "subtitle": "Time Series Forecasting",
+        "date": "Fall 2024",
         "status": "Completed",
-        "date": "Spring 2025",
-        "github": "https://github.com/yourusername/airbnb-prediction",
+        "description": "Built machine learning models to predict Airbnb occupancy rates using historical booking data and external factors. Implemented multiple forecasting approaches including ARIMA, Prophet, and LSTM networks.",
+        "tech_stack": ["Python", "Prophet", "ARIMA", "LSTM", "Pandas"],
+        "image": "placeholder",
+        "github": None,
         "demo": None,
-        "thumbnail": "airbnb_thumb.jpg",
-        "short_description": "Deep neural network for occupancy rate prediction across 25K+ multi-city Airbnb listings",
-        "featured": False,
-        "interactive": False,
+        "featured": False
     },
     {
         "id": "cusebus",
-        "title": "CuseBus: Intelligent Transit Planning Platform",
-        "category": "Domain-Specific Applications",
-        "tags": ["Database Design", "Web Development", "Data Integration", "Transit"],
-        "status": "In Progress",
-        "date": "Fall 2025",
-        "github": "https://github.com/yourusername/cusebus",
+        "title": "CuseBus Route Optimization",
+        "subtitle": "Operations Research",
+        "date": "Spring 2024",
+        "status": "Completed",
+        "description": "Analyzed Syracuse University bus system data to optimize routes and schedules. Used network analysis and optimization algorithms to improve service efficiency.",
+        "tech_stack": ["Python", "NetworkX", "OR-Tools", "Visualization"],
+        "image": "placeholder",
+        "github": None,
         "demo": None,
-        "thumbnail": "cusebus_thumb.jpg",
-        "short_description": "Centralized platform to optimize student commute planning using Centro buses and Syracuse trolleys",
-        "featured": False,
-        "interactive": False,
+        "featured": False
     },
     {
-        "id": "energy_forecasting",
-        "title": "Energy Demand Forecasting for Utility Company",
-        "category": "Domain-Specific Applications",
-        "tags": ["Time Series", "R", "Shiny", "Statistical Modeling", "Forecasting"],
+        "id": "energy-forecasting",
+        "title": "Energy Consumption Forecasting",
+        "subtitle": "Sustainability Analytics",
+        "date": "Fall 2024",
         "status": "Completed",
+        "description": "Developed predictive models for building energy consumption to support sustainability initiatives. Incorporated weather data, occupancy patterns, and historical usage.",
+        "tech_stack": ["Python", "XGBoost", "Feature Engineering", "Time Series"],
+        "image": "placeholder",
+        "github": None,
+        "demo": None,
+        "featured": False
+    },
+    {
+        "id": "medical-imaging",
+        "title": "Medical Image Analysis",
+        "subtitle": "Computer Vision for Healthcare",
         "date": "Spring 2025",
+        "status": "In Progress",
+        "description": "Developing deep learning models for automated medical image analysis. Focus on segmentation and classification tasks for diagnostic support.",
+        "tech_stack": ["PyTorch", "Computer Vision", "U-Net", "Medical Imaging"],
+        "image": "placeholder",
         "github": None,
         "demo": None,
-        "thumbnail": "energy_thumb.jpg",
-        "short_description": "Predictive models to forecast peak electricity demand for South Carolina residential properties",
-        "featured": False,
-        "interactive": False,
-    },
-    {
-        "id": "medical_imaging",
-        "title": "Medical Imaging: Automated Fracture Detection",
-        "category": "Domain-Specific Applications",
-        "tags": ["Medical Imaging", "Computer Vision", "ML", "Healthcare"],
-        "status": "Completed",
-        "date": "May 2022 - Jul 2023",
-        "github": None,
-        "demo": None,
-        "thumbnail": "medical_thumb.jpg",
-        "short_description": "ML model for automated fracture detection from 3000+ CT scans",
-        "featured": False,
-        "interactive": False,
-    },
+        "featured": False
+    }
 ]
 
-# ==================== VIDEO & BLOG CONFIGURATION ====================
-VIDEO_INFO = {
-    "youtube_url": None,  # Add your YouTube URL here (can be unlisted)
-    "duration": "1-2 minutes",
-    "topics_covered": [
-        "Overview of MS ADS program",
-        "Key learnings and takeaways",
-        "Favorite experiences",
-        "Career goals and next steps"
-    ]
-}
+# Learning Outcomes (for Overview page)
+LEARNING_OUTCOMES = """
+Throughout my MS in Applied Data Science program at Syracuse University, I have developed comprehensive skills across the entire machine learning lifecycle:
 
-BLOG_INFO = {
-    "title": "Reflecting on My Journey Through the MS in Applied Data Science Program",
-    "word_count_target": 3000,
+**Technical Foundations:**
+- Advanced machine learning algorithms and deep learning architectures
+- Statistical modeling and experimental design
+- Big data processing and distributed computing
+- Cloud-based ML deployment and MLOps practices
+
+**Applied Skills:**
+- End-to-end ML project development from problem formulation to deployment
+- Working with diverse data types: text, images, time series, graphs
+- Model interpretability and fairness considerations
+- Production ML systems and monitoring
+
+**Research & Communication:**
+- Critical evaluation of ML research papers
+- Technical writing and documentation
+- Presenting complex technical concepts to diverse audiences
+- Collaborative development using version control and agile practices
+"""
+
+# Blog Post Sections (for Reflection page)
+BLOG_POST = {
+    "title": "Building AI Systems for Social Impact: Lessons from My Graduate Journey",
+    "date": "December 2025",
+    "read_time": "15 min read",
     "sections": [
-        "What I Expected to Learn",
-        "What I Actually Learned",
-        "Learning Outcomes Achievement",
-        "Key Projects and Their Impact",
-        "Outside the Classroom",
-        "Favorite Classes and Experiences",
-        "Biggest Surprises",
-        "Looking Forward"
+        {
+            "heading": "Introduction",
+            "content": """
+            Write your introduction here. This should hook the reader and outline what they'll learn.
+            Talk about your journey, what motivated you, and what this post will cover.
+            """
+        },
+        {
+            "heading": "Section 1: Your First Main Point",
+            "content": """
+            Expand on your first main idea. Include:
+            - Specific examples from your projects
+            - Challenges you faced
+            - What you learned
+            - How it changed your perspective
+            """
+        },
+        {
+            "heading": "Section 2: Your Second Main Point",
+            "content": """
+            Continue developing your narrative. Connect to:
+            - Technical concepts you learned
+            - Real-world applications
+            - Industry trends
+            - Future implications
+            """
+        },
+        # Add more sections as needed
     ]
 }
 
-# ==================== SKILLS ====================
-SKILLS = {
-    "Programming Languages": ["Python", "R", "JavaScript", "Java", "C++", "SQL", "MATLAB"],
-    "ML/AI Frameworks": ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "Hugging Face", "LangChain"],
-    "Data Science": ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Statistical Modeling"],
-    "NLP & LLMs": ["Sentence Transformers", "Word Embeddings", "Fine-tuning", "RAG Systems"],
-    "ML Engineering": ["Model Deployment", "MLOps", "Experiment Tracking", "Hyperparameter Tuning"],
-    "Databases": ["MySQL", "PostgreSQL", "ChromaDB", "ETL Pipelines"],
-    "DevOps & Cloud": ["AWS", "Azure", "Docker", "Jenkins", "CI/CD", "Git/GitHub"],
-    "Visualization": ["Power BI", "Tableau", "Streamlit", "Shiny"],
-}
-
-# ==================== EXPERIENCE ====================
-EXPERIENCE = [
-    {
-        "title": "Research Intern",
-        "organization": "Defence Research and Development Organisation (DRDO)",
-        "location": "Bengaluru, India",
-        "dates": "Sep 2021 - Jul 2022",
-        "type": "Research",
-        "highlights": [
-            "Designed two novel direction-finding algorithms for airborne electronic warfare systems",
-            "Improved target localization accuracy by 15% over baseline methods",
-            "Led 4-member research team through systematic experimental design",
-            "Published research at IEEE MAPCON 2022"
-        ]
-    },
-    {
-        "title": "DevOps Engineer",
-        "organization": "Continental Automotive",
-        "location": "Bengaluru, India",
-        "dates": "Jul 2023 - Jul 2024",
-        "type": "Industry",
-        "highlights": [
-            "Designed automated unit testing framework reducing manual QA effort by 40%",
-            "Built Power BI dashboard for 1000+ JSON files",
-            "Architected Jenkins CI/CD pipelines achieving 95% uptime"
-        ]
-    },
-    {
-        "title": "Software Developer & ML Research Engineer",
-        "organization": "Cirruslabs Pvt. Ltd.",
-        "location": "Bengaluru, India",
-        "dates": "May 2022 - Jul 2023",
-        "type": "Industry",
-        "highlights": [
-            "Led medical imaging research analyzing 3000+ CT scans",
-            "Developed 80+ REST APIs for production applications",
-            "Served as Scrum Master for 6-member team"
-        ]
-    },
-]
-
-# ==================== CONTACT PREFERENCES ====================
-CONTACT_FORM = {
-    "enabled": False,  # Set to True if you want a contact form
-    "email_service": None,  # e.g., "formspree", "emailjs", etc.
-}
-
-# ==================== ANALYTICS ====================
-ANALYTICS = {
-    "google_analytics_id": None,  # Add your GA4 ID if you want tracking
-}
-
-# ==================== SEO ====================
-SEO = {
-    "page_title": "Your Name - Data Science Portfolio",
-    "page_description": "MS in Applied Data Science portfolio showcasing ML systems, research projects, and AI applications",
-    "keywords": ["data science", "machine learning", "AI", "portfolio", "research"],
+# About Me
+ABOUT_ME = {
+    "bio": """
+    I am a Master's student in Applied Data Science at Syracuse University, passionate about building 
+    fair, robust, and human-centered AI/ML systems. My work focuses on the intersection of machine learning, 
+    natural language processing, and responsible AI.
+    
+    With a background in [YOUR BACKGROUND], I bring [YOUR UNIQUE PERSPECTIVE] to data science challenges. 
+    I'm particularly interested in developing ML systems that create positive social impact while maintaining 
+    ethical standards and fairness.
+    """,
+    "education": [
+        {
+            "degree": "MS in Applied Data Science",
+            "school": "Syracuse University",
+            "location": "Syracuse, NY",
+            "date": "Expected Dec 2025",
+            "gpa": "3.87/4.0"
+        },
+        {
+            "degree": "BS in [Your Major]",
+            "school": "[Your University]",
+            "location": "[Location]",
+            "date": "[Graduation Date]",
+            "gpa": "[Your GPA]"
+        }
+    ],
+    "experience": [
+        {
+            "title": "[Your Role]",
+            "company": "[Company Name]",
+            "location": "[Location]",
+            "date": "[Dates]",
+            "description": [
+                "Achievement or responsibility 1",
+                "Achievement or responsibility 2",
+                "Achievement or responsibility 3"
+            ]
+        }
+    ]
 }
