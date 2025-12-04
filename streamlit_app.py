@@ -5,7 +5,7 @@ import config
 # Page config
 st.set_page_config(
     page_title=f"{config.PERSONAL_INFO['name']} - Portfolio",
-    page_icon="🖥️",
+    page_icon="📚",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -18,66 +18,97 @@ def load_css():
 
 load_css()
 
-# Top Navigation Bar
+# Modern Top Navigation Bar
 st.markdown(f"""
 <div class="top-nav">
     <div class="nav-container">
-        <div class="nav-brand">{config.PERSONAL_INFO['name'].upper()}.EXE</div>
+        <div class="nav-brand">{config.PERSONAL_INFO['name']}</div>
         <div class="nav-links">
             <a class="nav-link" href="/" target="_self">Home</a>
             <a class="nav-link" href="/Overview" target="_self">Overview</a>
             <a class="nav-link" href="/Projects" target="_self">Projects</a>
             <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
+            <a class="nav-link" href="/Video" target="_self">Video</a>
             <a class="nav-link" href="/About" target="_self">About</a>
         </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Hero Section with Window Style
-st.markdown("""
-<div class="hero-window">
-    <div class="window-titlebar">
-        <div class="window-title">WELCOME.SYS</div>
-        <div class="window-buttons">
-            <div class="window-btn"></div>
-            <div class="window-btn"></div>
-            <div class="window-btn"></div>
+# Hero Section - Modern Landing
+st.markdown(f"""
+<div class="hero-section">
+    <h1>{config.PERSONAL_INFO['name']}</h1>
+    <div class="subtitle">{config.PERSONAL_INFO['title']}</div>
+    <p style="font-size: 1.1rem; margin-top: 1rem;">{config.PERSONAL_INFO['tagline']}</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Navigation Cards - Quick Access
+st.markdown('<div class="section-header">Portfolio Sections</div>', unsafe_allow_html=True)
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    <div class="card">
+        <div class="card-header">
+            <h3>📋 Overview</h3>
+        </div>
+        <div class="card-body">
+            <p>Program learning outcomes, project summaries, and achievement explanations</p>
         </div>
     </div>
-    <div class="window-content">
-        <h1>{name}</h1>
-        <div class="subtitle">{title}</div>
-        <p>{tagline}</p>
+    """, unsafe_allow_html=True)
+    st.link_button("View Overview →", "/Overview", use_container_width=True)
+
+with col2:
+    st.markdown("""
+    <div class="card">
+        <div class="card-header">
+            <h3>💻 Projects</h3>
+        </div>
+        <div class="card-body">
+            <p>Detailed descriptions of 6 data science projects from the MS program</p>
+        </div>
     </div>
-</div>
-""".format(
-    name=config.PERSONAL_INFO['name'],
-    title=config.PERSONAL_INFO['title'],
-    tagline=config.PERSONAL_INFO['tagline'],
-), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
+    st.link_button("View Projects →", "/Projects", use_container_width=True)
 
-# Pixel Divider
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+with col3:
+    st.markdown("""
+    <div class="card">
+        <div class="card-header">
+            <h3>📝 Reflection</h3>
+        </div>
+        <div class="card-body">
+            <p>In-depth reflection on the MS Applied Data Science program experience</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("View Reflection →", "/Reflection", use_container_width=True)
 
-# Skills Section - NO PROFICIENCY BARS
-st.markdown('<div class="section-header">TECHNICAL SKILLS</div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
-# Display skills in 4 columns
+# Technical Skills Section
+st.markdown('<div class="section-header">Technical Skills</div>', unsafe_allow_html=True)
+
 cols = st.columns(4)
 for idx, skill in enumerate(config.SKILLS):
     with cols[idx % 4]:
         st.markdown(f"""
         <div class="skill-card">
             <h3>{skill['name']}</h3>
+            <div class="skill-level">{skill['level']}</div>
         </div>
         """, unsafe_allow_html=True)
 
-# Pixel Divider
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Research Interests
-st.markdown('<div class="section-header">RESEARCH INTERESTS</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Research Interests</div>', unsafe_allow_html=True)
 
 cols = st.columns(3)
 for idx, interest in enumerate(config.INTERESTS):
@@ -89,102 +120,99 @@ for idx, interest in enumerate(config.INTERESTS):
         </div>
         """, unsafe_allow_html=True)
 
-# Pixel Divider
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
-# Featured Projects
-# st.markdown('<div class="section-header">FEATURED PROJECTS</div>', unsafe_allow_html=True)
-
-# # Get featured projects
-# featured_projects = [p for p in config.PROJECTS if p.get('featured', False)]
-
-# for project in featured_projects[:3]:  
-#     # Tech stack tags HTML
-#     tech_tags = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack']])
-    
-#     st.markdown(f"""
-#     <div class="project-display">
-#         <div class="project-image">
-#             <div class="project-placeholder">IMAGE</div>
-#         </div>
-#         <div class="project-info">
-#             <div class="project-header">
-#                 <h3>{project['title']}</h3>
-#                 <div class="project-meta">{project['date']} | {project['status']}</div>
-#             </div>
-#             <div class="project-body">
-#                 <p>{project['description']}</p>
-#                 <div class="tech-label">Built With:</div>
-#                 <div class="tech-tags">
-#                     {tech_tags}
-#                 </div>
-#             </div>
-#         </div>
-#     </div>
-#     """, unsafe_allow_html=True)
-    
-#     # View Project button
-#     if project.get('github') or project.get('demo'):
-#         col1, col2, col3 = st.columns([1, 1, 4])
-#         with col1:
-#             if project.get('github'):
-#                 st.link_button("GitHub →", project['github'], use_container_width=True)
-#         with col2:
-#             if project.get('demo'):
-#                 st.link_button("Demo →", project['demo'], use_container_width=True)
-
-# # Pixel Divider
-# st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
-
-# Quick Links
-st.markdown('<div class="section-header">CONNECT</div>', unsafe_allow_html=True)
+# Quick Stats
+st.markdown('<div class="section-header">At a Glance</div>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
+    st.markdown("""
+    <div class="stat-card">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Projects Completed</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="stat-card">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Learning Outcomes</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown(f"""
+    <div class="stat-card">
+        <div class="stat-value">{len(config.SKILLS)}</div>
+        <div class="stat-label">Technical Skills</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div class="stat-card">
+        <div class="stat-value">3.88</div>
+        <div class="stat-label">GPA</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
+
+# Connect Section
+st.markdown('<div class="section-header">Connect</div>', unsafe_allow_html=True)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown("""
+    <div class="interest-item">
+        <div class="interest-icon">📧</div>
+        <h3>Email</h3>
+    </div>
+    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('email'):
-        st.markdown(f"""
-        <div class="interest-item">
-            <div class="interest-icon">📧</div>
-            <h3>Email</h3>
-        </div>
-        """, unsafe_allow_html=True)
         st.link_button("Send Email", f"mailto:{config.PERSONAL_INFO['email']}", use_container_width=True)
 
 with col2:
+    st.markdown("""
+    <div class="interest-item">
+        <div class="interest-icon">💼</div>
+        <h3>LinkedIn</h3>
+    </div>
+    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('linkedin'):
-        st.markdown(f"""
-        <div class="interest-item">
-            <div class="interest-icon">💼</div>
-            <h3>LinkedIn</h3>
-        </div>
-        """, unsafe_allow_html=True)
         st.link_button("Connect", config.PERSONAL_INFO['linkedin'], use_container_width=True)
 
 with col3:
+    st.markdown("""
+    <div class="interest-item">
+        <div class="interest-icon">💻</div>
+        <h3>GitHub</h3>
+    </div>
+    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('github'):
-        st.markdown(f"""
-        <div class="interest-item">
-            <div class="interest-icon">💻</div>
-            <h3>GitHub</h3>
-        </div>
-        """, unsafe_allow_html=True)
         st.link_button("Follow", config.PERSONAL_INFO['github'], use_container_width=True)
 
 with col4:
-    st.markdown(f"""
+    st.markdown("""
     <div class="interest-item">
-        <div class="interest-icon">📄</div>
-        <h3>Resume</h3>
+        <div class="interest-icon">🎥</div>
+        <h3>Video</h3>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Download", "#", use_container_width=True)
+    st.link_button("Watch Presentation", "/Video", use_container_width=True)
 
 # Footer
-st.markdown("""
-<div style="text-align: center; margin-top: 4rem; padding: 2rem; border-top: 2px dashed var(--primary-teal);">
-    <p style="color: var(--text-light); font-size: 0.85rem;">
-        Built with Streamlit | © 2025 {name}
+st.markdown(f"""
+<div style="text-align: center; margin-top: 4rem; padding: 2rem;">
+    <div class="divider" style="margin-bottom: 2rem;"></div>
+    <p style="color: var(--text-tertiary); font-size: 0.9rem;">
+        MS Applied Data Science Portfolio | Syracuse University | © 2025 {config.PERSONAL_INFO['name']}
     </p>
 </div>
-""".format(name=config.PERSONAL_INFO['name']), unsafe_allow_html=True)
+""", unsafe_allow_html=True)

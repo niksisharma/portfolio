@@ -12,7 +12,6 @@ PERSONAL_INFO = {
     "title": "MS Applied Data Science | Syracuse University",
     "tagline": "Building robust, fair, and human-centered AI/ML systems",
     "email": "your.email@example.com",
-    "phone": "+1 (123) 456-7890",
     "location": "Syracuse, NY",
     "linkedin": "https://linkedin.com/in/yourprofile",
     "github": "https://github.com/yourusername",
@@ -20,12 +19,12 @@ PERSONAL_INFO = {
 }
 
 # Stats for Homepage
-STATS = {
-    "projects": 7,
-    "completed": 5,
-    "gpa": "3.87",
-    "publications": 1
-}
+# STATS = {
+#     "projects": 7,
+#     "completed": 5,
+#     "gpa": "3.87",
+#     "publications": 1
+# }
 
 # Theme Colors - Option A: Windows 95 Style
 COLORS = {
@@ -104,7 +103,7 @@ PROJECTS = [
         "id": "rag-ception",
         "title": "RAG-ception",
         "subtitle": "Automated Research Knowledge Management",
-        "date": "Oct 2025 - Dec 2025",
+        "date": "Fall 2025",
         "status": "In Progress",
         "short_description": "End-to-end ML system to automatically track, summarize, and connect RAG/LLM research papers from arXiv.",
         "description": "End-to-end ML system to automatically track, summarize, and connect RAG/LLM research papers from arXiv. Fine-tuning LLMs to generate structured research summaries with consistent schema. Building dynamic knowledge graph using Graphiti API to identify conceptual relationships and citation networks across 500+ papers.",
@@ -118,9 +117,9 @@ PROJECTS = [
             "deployment": "Streamlit interface with semantic search"
         },
         "results": {
-            "papers_processed": "500+",
-            "accuracy": "85% summary quality (human eval)",
-            "time_saved": "70% reduction in literature review time"
+            "papers_processed": "50+",
+            "accuracy": "ooo",
+            "time_saved": "idk"
         },
         "challenges": [
             "LLM hallucination in summaries",
@@ -137,15 +136,15 @@ PROJECTS = [
             "LO5": "Built interactive Streamlit interface for non-technical researchers"
         },
         "image": "placeholder",
-        "github": "https://github.com/yourusername/rag-ception",
+        "github": "https://github.com/niksisharma/ragception",
         "demo": None,
         "featured": True,
-        "course": "IST 718 - Big Data Analytics"
+        "course": "IST 688 - Building Human Centered AI Applications"
     },
     {
         "id": "aurora-prediction",
         "title": "Aurora Prediction",
-        "subtitle": "Geomagnetic Activity Forecasting",
+        "subtitle": "LSTM Based Geomagnetic Activity Forecasting",
         "date": "Fall 2025",
         "status": "In Progress",
         "short_description": "LSTM-based deep learning model to predict geomagnetic activity (Kp index) for aurora visibility forecasting.",
@@ -179,10 +178,10 @@ PROJECTS = [
             "LO5": "Designed API and visualization for end-users (photographers, tourists)"
         },
         "image": "placeholder",
-        "github": "https://github.com/yourusername/aurora-prediction",
+        "github": "https://github.com/niksisharma/aurora-prediction",
         "demo": None,
         "featured": True,
-        "course": "IST 707 - Applied Machine Learning"
+        "course": "IST 699 - Deep Learning in Practice"
     },
     {
         "id": "capsnet",
@@ -219,16 +218,16 @@ PROJECTS = [
             "LO5": "Documented findings and compared against baselines in technical report"
         },
         "image": "placeholder",
-        "github": "https://github.com/yourusername/capsnet",
+        "github": "https://github.com/niksisharma/capsNet",
         "demo": None,
         "featured": True,
-        "course": "IST 664 - Natural Language Processing"
+        "course": "CIS 788 - Artificial Neural Networks"
     },
     {
         "id": "airbnb-occupancy",
         "title": "Airbnb Occupancy Prediction",
         "subtitle": "Time Series Forecasting for Hospitality",
-        "date": "Fall 2024",
+        "date": "Spring 2025",
         "status": "Completed",
         "short_description": "ML models to predict Airbnb occupancy rates using historical booking data and external factors.",
         "description": "Built machine learning models to predict Airbnb occupancy rates using historical booking data, pricing, seasonality, local events, and weather. Implemented multiple forecasting approaches including ARIMA, Prophet, and LSTM networks. Achieved 82% accuracy in predicting occupancy 30 days ahead.",
@@ -260,16 +259,16 @@ PROJECTS = [
             "LO4": "Implemented comprehensive Python pipeline with multiple libraries"
         },
         "image": "placeholder",
-        "github": None,
+        "github": "https://github.com/niksisharma/airBnB",
         "demo": None,
         "featured": False,
-        "course": "IST 687 - Applied Data Science"
+        "course": "IST 707 - Applied Data Science"
     },
     {
         "id": "cusebus",
-        "title": "CuseBus Route Optimization",
+        "title": "Syracuse University Bus System Optimization",
         "subtitle": "Operations Research for Campus Transit",
-        "date": "Spring 2024",
+        "date": "Fall 2024",
         "status": "Completed",
         "short_description": "Network analysis and optimization to improve Syracuse University bus system efficiency.",
         "description": "Analyzed Syracuse University bus system data to optimize routes and schedules. Used network analysis and optimization algorithms to improve service efficiency. Reduced average wait time by 18% and identified 3 underserved routes. Proposed schedule changes based on actual ridership patterns.",
@@ -304,7 +303,7 @@ PROJECTS = [
         "github": None,
         "demo": None,
         "featured": False,
-        "course": "IST 652 - Scripting for Data Analysis"
+        "course": "IST 652 - Data Admin and Database Management Systems"
     },
     {
         "id": "energy-forecasting",
@@ -346,60 +345,45 @@ PROJECTS = [
         "github": None,
         "demo": None,
         "featured": False,
-        "course": "IST 736 - Text Mining"
+        "course": "IST 687 - Introduction to Data Science"
     },
-    {
-        "id": "medical-imaging",
-        "title": "Medical Image Analysis",
-        "subtitle": "Computer Vision for Healthcare",
-        "date": "Spring 2025",
-        "status": "In Progress",
-        "short_description": "Deep learning models for automated medical image analysis and segmentation.",
-        "description": "Developing deep learning models for automated medical image analysis. Focus on segmentation and classification tasks for diagnostic support. Using U-Net architecture for organ segmentation. Currently working on lung nodule detection with 89% sensitivity.",
-        "problem_statement": "Radiologists spend hours analyzing medical images. Automated segmentation could speed diagnosis and reduce errors.",
-        "solution": "U-Net based segmentation model with transfer learning, focusing on lung CT scans for nodule detection.",
-        "tech_stack": ["PyTorch", "Computer Vision", "U-Net", "Medical Imaging", "Transfer Learning"],
-        "technical_details": {
-            "data": "LIDC-IDRI dataset (1000+ CT scans)",
-            "preprocessing": "Window leveling, normalization, augmentation",
-            "architecture": "U-Net with ResNet encoder",
-            "evaluation": "Dice coefficient, sensitivity, specificity"
-        },
-        "results": {
-            "status": "In progress",
-            "current_performance": "89% sensitivity, 82% Dice coefficient",
-            "target": "95% sensitivity for clinical viability"
-        },
-        "challenges": [
-            "Class imbalance (few positive cases)",
-            "Annotation quality and inter-rater variability",
-            "Ethical considerations in medical AI",
-            "Explaining predictions to clinicians"
-        ],
-        "learning_outcomes": ["LO3", "LO4", "LO5", "LO6"],
-        "lo_explanations": {
-            "LO3": "Implemented segmentation and classification models",
-            "LO4": "Deep PyTorch implementation with medical imaging libraries",
-            "LO5": "Developing explainable AI for clinical stakeholders",
-            "LO6": "Addressing bias, privacy, and transparency in medical AI"
-        },
-        "image": "placeholder",
-        "github": None,
-        "demo": None,
-        "featured": False,
-        "course": "IST 782 - Advanced Deep Learning"
-    }
 ]
+
+# Blog Post / Reflection
+# Paste your 3000-word reflection here when ready
+BLOG_POST = {
+    "title": "Reflection on My MS Applied Data Science Journey",
+    "date": "December 2025",
+    "read_time": "15 min read",
+    "sections": [
+        {
+            "heading": "Introduction",
+            "content": """
+            [Your reflection content will go here. This is a placeholder.]
+
+            Replace this entire BLOG_POST dictionary with your 3000-word reflection.
+            The reflection should cover:
+            - What did you expect to learn in the program?
+            - What did you actually learn?
+            - How did you achieve each learning outcome?
+            - Description of 3 key projects
+            - Internship/iConsult/outside projects (if applicable)
+            - Favorite class and why
+            - Best parts and biggest surprises
+            """
+        }
+    ]
+}
 
 # About Me
 ABOUT_ME = {
     "bio": """
-    I am a Master's student in Applied Data Science at Syracuse University, passionate about building 
-    fair, robust, and human-centered AI/ML systems. My work focuses on the intersection of machine learning, 
+    I am a Master's student in Applied Data Science at Syracuse University, passionate about building
+    fair, robust, and human-centered AI/ML systems. My work focuses on the intersection of machine learning,
     natural language processing, and responsible AI.
-    
-    With a background in [YOUR BACKGROUND], I bring [YOUR UNIQUE PERSPECTIVE] to data science challenges. 
-    I'm particularly interested in developing ML systems that create positive social impact while maintaining 
+
+    With a background in [YOUR BACKGROUND], I bring [YOUR UNIQUE PERSPECTIVE] to data science challenges.
+    I'm particularly interested in developing ML systems that create positive social impact while maintaining
     ethical standards and fairness.
     """,
     "education": [
@@ -408,13 +392,13 @@ ABOUT_ME = {
             "school": "Syracuse University",
             "location": "Syracuse, NY",
             "date": "Expected Dec 2025",
-            "gpa": "3.87/4.0"
+            "gpa": "3.88/4.0"
         },
         {
-            "degree": "BS in [Your Major]",
+            "degree": "BE in Electronics and Communication Engineering",
             "school": "[Your University]",
             "location": "[Location]",
-            "date": "[Graduation Date]",
+            "date": "August 2022",
             "gpa": "[Your GPA]"
         }
     ],

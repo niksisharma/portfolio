@@ -1,11 +1,11 @@
 import streamlit as st
 from pathlib import Path
 import sys
-sys.path.append(str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 
 st.set_page_config(
-    page_title="Overview - Portfolio",
+    page_title=f"Overview - {config.PERSONAL_INFO['name']}",
     page_icon="📋",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -18,16 +18,17 @@ def load_css():
 
 load_css()
 
-# Top Navigation
+# Modern Top Navigation Bar
 st.markdown(f"""
 <div class="top-nav">
     <div class="nav-container">
-        <div class="nav-brand">{config.PERSONAL_INFO['name'].upper()}.EXE</div>
+        <div class="nav-brand">{config.PERSONAL_INFO['name']}</div>
         <div class="nav-links">
             <a class="nav-link" href="/" target="_self">Home</a>
             <a class="nav-link" href="/Overview" target="_self">Overview</a>
             <a class="nav-link" href="/Projects" target="_self">Projects</a>
             <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
+            <a class="nav-link" href="/Video" target="_self">Video</a>
             <a class="nav-link" href="/About" target="_self">About</a>
         </div>
     </div>
@@ -36,76 +37,72 @@ st.markdown(f"""
 
 # Page Header
 st.markdown("""
-<div class="hero-window">
-    <div class="window-titlebar">
-        <div class="window-title">OVERVIEW.SYS</div>
-        <div class="window-buttons">
-            <div class="window-btn"></div>
-            <div class="window-btn"></div>
-            <div class="window-btn"></div>
-        </div>
-    </div>
-    <div class="window-content">
-        <h1>Portfolio Overview</h1>
-        <p>A comprehensive overview of my graduate program learning outcomes and project portfolio demonstrating mastery of data science principles and practices.</p>
-    </div>
+<div style="text-align: center; margin: 3rem 0 2rem 0;">
+    <h1>Portfolio Overview</h1>
+    <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+        A comprehensive overview of my graduate program learning outcomes and project portfolio demonstrating mastery of data science principles and practices.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Program Learning Outcomes
-st.markdown('<div class="section-header">PROGRAM LEARNING OUTCOMES</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Program Learning Outcomes</div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div class="project-info">
-    <div class="project-body">
-        <p>The MS in Applied Data Science program at Syracuse University is designed to develop interdisciplinary expertise across technical, analytical, and ethical dimensions of data science. Through coursework and applied projects, I have achieved the following learning outcomes:</p>
-    </div>
+<div style="max-width: 900px; margin: 0 auto 2rem auto;">
+    <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; text-align: center;">
+        The MS in Applied Data Science program at Syracuse University is designed to develop interdisciplinary expertise across technical, analytical, and ethical dimensions of data science. Through coursework and applied projects, I have achieved the following learning outcomes:
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-# Display each learning outcome
+# Display each learning outcome with clean, readable style
 for lo_id, lo in config.LEARNING_OUTCOMES.items():
     st.markdown(f"""
-    <div class="skill-card" style="text-align: left; margin-bottom: 1.5rem;">
-        <h3 style="margin-bottom: 0.5rem;">Learning Outcome {lo['number']}: {lo['title']}</h3>
-        <p style="color: var(--text-dark); margin-top: 0.5rem;">
+    <div style="margin-bottom: 2.5rem;">
+        <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
+            <span style="color: var(--primary-sky-dark); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em;">LO{lo['number']}</span>
+            <h3 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--text-primary);">
+                {lo['title']}
+            </h3>
+        </div>
+        <p style="color: var(--text-secondary); margin: 0 0 0 3.5rem; font-size: 1.1rem; line-height: 1.85;">
             {lo['description']}
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Learning Outcomes Achievement Matrix
-st.markdown('<div class="section-header">HOW I ACHIEVED THE LEARNING OUTCOMES</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Learning Outcome Achievement Matrix</div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div class="project-info">
-    <div class="project-body">
-        <p>The table below maps each project to the specific learning outcomes it demonstrates. Click on any project name to see detailed explanations of how it addresses each learning outcome.</p>
+<div class="card" style="margin-bottom: 2rem;">
+    <div class="card-body">
+        <p>The table below maps each project to the specific learning outcomes it demonstrates. This matrix shows how my project portfolio comprehensively addresses all program learning outcomes.</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Create matrix showing which projects demonstrate which LOs
-st.markdown('<div style="margin-top: 2rem;"></div>', unsafe_allow_html=True)
-
 # Matrix table
 matrix_html = """
-<div class="project-info">
-    <div class="project-body">
+<div class="card">
+    <div class="card-body" style="overflow-x: auto;">
         <table style="width: 100%; border-collapse: collapse;">
             <thead>
-                <tr style="background-color: var(--bg-darker); border-bottom: 3px solid var(--border-black);">
-                    <th style="padding: 1rem; text-align: left; border-right: 2px solid var(--border-black);">Project</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 2px solid var(--border-black);">LO1</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 2px solid var(--border-black);">LO2</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 2px solid var(--border-black);">LO3</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 2px solid var(--border-black);">LO4</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 2px solid var(--border-black);">LO5</th>
-                    <th style="padding: 1rem; text-align: center;">LO6</th>
+                <tr style="background: linear-gradient(135deg, var(--primary-sky-light), var(--accent-sage-light)); border-bottom: 2px solid var(--primary-sky);">
+                    <th style="padding: 1rem; text-align: left; border-right: 1px solid var(--border-light); font-weight: 600;">Project</th>
+                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO1</th>
+                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO2</th>
+                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO3</th>
+                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO4</th>
+                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO5</th>
+                    <th style="padding: 1rem; text-align: center; font-weight: 600;">LO6</th>
                 </tr>
             </thead>
             <tbody>
@@ -113,17 +110,18 @@ matrix_html = """
 
 for project in config.PROJECTS:
     matrix_html += f"""
-                <tr style="border-bottom: 2px solid var(--bg-darker);">
-                    <td style="padding: 0.8rem; font-weight: bold; border-right: 2px solid var(--border-black);">{project['title']}</td>
+                <tr style="border-bottom: 1px solid var(--border-light);">
+                    <td style="padding: 0.8rem; font-weight: 500; border-right: 1px solid var(--border-light);">{project['title']}</td>
     """
-    
+
     for i in range(1, 7):
         lo_id = f"LO{i}"
+        border_style = 'border-right: 1px solid var(--border-light);' if i < 6 else ''
         if lo_id in project.get('learning_outcomes', []):
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; border-right: 2px solid var(--border-black);"><span style="color: var(--primary-teal); font-size: 1.5rem;">✓</span></td>'
+            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: var(--accent-sage-dark); font-size: 1.3rem; font-weight: bold;">✓</span></td>'
         else:
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; border-right: 2px solid var(--border-black);"><span style="color: var(--text-light);">-</span></td>'
-    
+            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: var(--text-muted);">—</span></td>'
+
     matrix_html += """
                 </tr>
     """
@@ -139,136 +137,108 @@ st.markdown(matrix_html, unsafe_allow_html=True)
 
 # Legend
 st.markdown("""
-<div class="project-info" style="margin-top: 1rem;">
-    <div class="project-body">
-        <p style="font-size: 0.9rem; color: var(--text-gray);">
+<div class="card" style="margin-top: 1rem; background: var(--bg-light-gray);">
+    <div class="card-body">
+        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin: 0;">
             <strong>Legend:</strong> LO1 = Data Collection & Storage | LO2 = Actionable Insights | LO3 = Visualization & Predictive Models | LO4 = Programming Proficiency | LO5 = Communication | LO6 = Ethics & Responsible AI
         </p>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Detailed LO Achievement Explanations
-st.markdown('<div class="section-header">DETAILED ACHIEVEMENT EXPLANATIONS</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">How I Achieved Each Learning Outcome</div>', unsafe_allow_html=True)
 
 # For each LO, show which projects demonstrate it and how
 for lo_id, lo in config.LEARNING_OUTCOMES.items():
     with st.expander(f"🎯 LO{lo['number']}: {lo['title']}", expanded=False):
         st.markdown(f"**{lo['description']}**")
         st.markdown("---")
-        
+
         # Find all projects that demonstrate this LO
         relevant_projects = [p for p in config.PROJECTS if lo_id in p.get('learning_outcomes', [])]
-        
+
         if relevant_projects:
             st.markdown(f"**Demonstrated in {len(relevant_projects)} project(s):**")
-            
+
             for project in relevant_projects:
                 explanation = project['lo_explanations'].get(lo_id, "")
                 st.markdown(f"""
-                <div class="skill-card" style="text-align: left; margin: 1rem 0;">
-                    <h3 style="margin-bottom: 0.5rem;">{project['title']}</h3>
-                    <p style="color: var(--text-dark);">✓ {explanation}</p>
+                <div class="card" style="margin: 1rem 0;">
+                    <div class="card-header">
+                        <h4 style="margin: 0; font-size: 1.1rem;">{project['title']}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p style="margin: 0;">✓ {explanation}</p>
+                    </div>
                 </div>
                 """, unsafe_allow_html=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # High-Level Project Descriptions
-st.markdown('<div class="section-header">PROJECT PORTFOLIO OVERVIEW</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Project Portfolio</div>', unsafe_allow_html=True)
 
-# Stats
-col1, col2, col3, col4 = st.columns(4)
-
-completed = len([p for p in config.PROJECTS if p['status'] == 'Completed'])
-in_progress = len([p for p in config.PROJECTS if p['status'] == 'In Progress'])
-featured = len([p for p in config.PROJECTS if p.get('featured', False)])
-
-with col1:
-    st.markdown(f"""
-    <div class="interest-item">
-        <div class="interest-icon" style="font-size: 3rem;">7</div>
-        <h3>Total Projects</h3>
+st.markdown("""
+<div class="card" style="margin-bottom: 2rem;">
+    <div class="card-body">
+        <p>Below are high-level descriptions of all projects in my portfolio. Each project demonstrates multiple learning outcomes and showcases different aspects of the data science lifecycle.</p>
     </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown(f"""
-    <div class="interest-item">
-        <div class="interest-icon" style="font-size: 3rem;">{completed}</div>
-        <h3>Completed</h3>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown(f"""
-    <div class="interest-item">
-        <div class="interest-icon" style="font-size: 3rem;">{in_progress}</div>
-        <h3>In Progress</h3>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col4:
-    st.markdown(f"""
-    <div class="interest-item">
-        <div class="interest-icon" style="font-size: 3rem;">{featured}</div>
-        <h3>Featured</h3>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # Project Catalog with High-Level Descriptions
-st.markdown('<div class="section-header">PROJECT CATALOG</div>', unsafe_allow_html=True)
-
 for project in config.PROJECTS:
-    with st.expander(f"{'⭐ ' if project.get('featured') else ''}🖥️ {project['title']} - {project['status']}", expanded=False):
-        
+    with st.expander(f"{'⭐ ' if project.get('featured') else ''}💻 {project['title']} — {project['status']}", expanded=False):
+
         col1, col2 = st.columns([2, 1])
-        
+
         with col1:
-            st.markdown(f"**{project['subtitle']}**")
+            st.markdown(f"### {project['subtitle']}")
             st.markdown(f"*{project['date']} | {project.get('course', 'Independent Project')}*")
             st.markdown("")
             st.markdown(project['description'])
-            
+
             # Tech stack
             st.markdown("**Technologies:**")
-            tech_badges = " ".join([f"`{tech}`" for tech in project['tech_stack']])
-            st.markdown(tech_badges)
-        
+            tech_tags_html = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack']])
+            st.markdown(f'<div class="tech-tags">{tech_tags_html}</div>', unsafe_allow_html=True)
+
         with col2:
             st.markdown("**Status**")
-            status_color = "#00A9A5" if project['status'] == "Completed" else "#FF6700"
-            st.markdown(f"<span style='color: {status_color}; font-weight: bold;'>{project['status']}</span>", unsafe_allow_html=True)
-            
+            status_color = "var(--accent-sage-dark)" if project['status'] == "Completed" else "var(--accent-rose-dark)"
+            st.markdown(f"<span style='color: {status_color}; font-weight: 600;'>{project['status']}</span>", unsafe_allow_html=True)
+
             st.markdown("**Learning Outcomes**")
-            los = ", ".join(project['learning_outcomes'])
-            st.markdown(f"`{los}`")
-            
+            los_badges = ''.join([f'<span class="lo-badge">{lo}</span>' for lo in project['learning_outcomes']])
+            st.markdown(f'<div>{los_badges}</div>', unsafe_allow_html=True)
+
             st.markdown("")
-            
+
             # View detailed page button
             if project.get('id'):
                 project_page_name = ''.join(word.capitalize() for word in project['id'].split('-'))
                 st.link_button("View Details →", f"/projects/{project_page_name}", use_container_width=True)
-            
+
             if project.get('github'):
                 st.link_button("GitHub →", project['github'], use_container_width=True)
-            
+
             if project.get('demo'):
                 st.link_button("Live Demo →", project['demo'], use_container_width=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Skills Developed
-st.markdown('<div class="section-header">TECHNICAL SKILLS DEVELOPED</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-header">Technical Skills Developed</div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div class="project-info">
-    <div class="project-body">
+<div class="card" style="margin-bottom: 2rem;">
+    <div class="card-body">
         <p>Through coursework and projects, I have developed proficiency across the following technical areas:</p>
     </div>
 </div>
@@ -285,14 +255,15 @@ for idx, skill in enumerate(config.SKILLS):
         </div>
         """, unsafe_allow_html=True)
 
-st.markdown('<div class="pixel-divider"></div>', unsafe_allow_html=True)
+# Gradient Divider
+st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
 # Call to Action
 st.markdown("""
-<div class="project-info">
-    <div class="project-body" style="text-align: center;">
-        <h3 style="color: var(--primary-teal); margin-bottom: 1rem;">Explore My Work</h3>
-        <p>Visit the Projects page to see detailed implementations, code samples, and results from each project. Read my Reflection blog post for insights on my learning journey through the program.</p>
+<div class="card" style="background: linear-gradient(135deg, var(--primary-sky-light), var(--accent-sage-light));">
+    <div class="card-body" style="text-align: center;">
+        <h3 style="margin-bottom: 1rem;">Explore My Work</h3>
+        <p>Visit the Projects page to see detailed implementations, code samples, and results. Read my Reflection for insights on my learning journey through the program.</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -303,4 +274,14 @@ with link_cols[0]:
 with link_cols[1]:
     st.link_button("📝 Read Reflection", "/Reflection", use_container_width=True)
 with link_cols[2]:
-    st.link_button("👤 About Me", "/About", use_container_width=True)
+    st.link_button("🎥 Watch Video", "/Video", use_container_width=True)
+
+# Footer
+st.markdown(f"""
+<div style="text-align: center; margin-top: 4rem; padding: 2rem;">
+    <div class="divider" style="margin-bottom: 2rem;"></div>
+    <p style="color: var(--text-tertiary); font-size: 0.9rem;">
+        MS Applied Data Science Portfolio | Syracuse University | © 2025 {config.PERSONAL_INFO['name']}
+    </p>
+</div>
+""", unsafe_allow_html=True)
