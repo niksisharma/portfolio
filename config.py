@@ -350,7 +350,6 @@ PROJECTS = [
 ]
 
 # Blog Post / Reflection
-# Paste your 3000-word reflection here when ready
 BLOG_POST = {
     "title": "Reflection on My MS Applied Data Science Journey",
     "date": "December 2025",
@@ -358,19 +357,79 @@ BLOG_POST = {
     "sections": [
         {
             "heading": "Introduction",
-            "content": """
-            [Your reflection content will go here. This is a placeholder.]
+            "content": """Early in the program, I was working through a routine lab exercise, building a binary classifier. I'd gotten the accuracy up to 85%, which felt pretty good for a Tuesday afternoon. Someone asked something pretty straightforward: "Which 15% is it getting wrong, and what happens to those people?" It wasn't some dramatic revelation, but it did make me look at my confusion matrix differently. I'd been treating the error rate as just a metric to improve, but the question made me think about actual consequences. Are these people being denied something? Getting flagged incorrectly? It's a simple question, but it stuck with me. It's something I think about every time I build a model.
 
-            Replace this entire BLOG_POST dictionary with your 3000-word reflection.
-            The reflection should cover:
-            - What did you expect to learn in the program?
-            - What did you actually learn?
-            - How did you achieve each learning outcome?
-            - Description of 3 key projects
-            - Internship/iConsult/outside projects (if applicable)
-            - Favorite class and why
-            - Best parts and biggest surprises
-            """
+I came to Syracuse's MS in Applied Data Science program from an odd angle. My undergrad was in electronics engineering, and I'd spent a few years in software engineering and DevOps. There was some data work sprinkled in, enough to make me curious but not enough to really understand what I was doing. I chose this program because I wanted a career switch, maybe PhD prep down the line, and honestly, because ML seemed like where the interesting problems were. I didn't have a specific area in mind when I started, just a vague sense that I wanted to understand how to build systems that actually worked with data, not just around it.
+
+This is my honest take on what I actually learned over the past two years: the technical skills, the perspective shifts, the surprises, and the gaps between expectation and reality. I'll walk through the projects that taught me the most, the class that changed how I think, and the moments where I realized I'd been approaching problems completely wrong. If you're considering grad school in data science or you're in the middle of it wondering if you're learning the "right" things, this is for you."""
+        },
+        {
+            "heading": "Part 1: Expectations vs. Reality",
+            "content": """I came in with realistic expectations: some math, plenty of Python, lots of building projects. What broke me in the first semester wasn't the technical work. It was the writing. Every project needed documentation. Every experiment needed a report explaining methodology, results, interpretation. Every presentation had to tell a story that made sense to people who weren't neck-deep in your code. I came from DevOps where documentation was "comments in the code if you're lucky." Suddenly I was writing 10-page reports about why my model performed the way it did.
+
+But here's the surprise that saved me: I discovered I actually liked the experimentation part more than the engineering part. In my old job, the goal was always "build it once, make it rock-solid, never touch it again." In ML, it's "try fifty things, see what works, throw out forty-nine of them, try fifty more." That iterative, exploratory process felt weirdly freeing.
+
+The biggest myth I believed? More data equals better models, and fancier models equal better results. I spent the first half of my first ML course thinking that if my model wasn't performing well, I just needed more data or a more complex architecture. Then I hit a project where I had tons of data and my model got worse. Noisy labels, duplicate entries, data drift. I tried swapping my simple logistic regression for a deep neural network, and my performance tanked because I was overfitting on a small signal. Some of my best-performing models ended up being embarrassingly simple: linear regressions, decision trees, things I could explain to a non-technical stakeholder in two sentences. I learned to start simple, add complexity only when justified, and spend more time cleaning data than tuning hyperparameters."""
+        },
+        {
+            "heading": "Part 2: Technical Growth Through Projects",
+            "content": """By second year, I was drowning in research papers. Every project started the same way: read twenty papers, take notes, forget which paper said what, re-read three of them because I couldn't remember key differences. I needed a system to organize research, not just store PDFs but actually understand connections between papers and surface relevant work when I needed it. That's how RAG-ception started: a system that uses RAG to manage RAG research.
+
+My first approach was embarrassingly naive. I threw papers at an off-the-shelf LLM and asked it to summarize them. The summaries were fluent, coherent, and completely useless. The model would hallucinate details or write summaries so generic they could apply to anything. The breakthrough came when I realized I needed to fine-tune the summarization model on actual research paper summaries with a consistent schema: extract problem statement, proposed method, key results, limitations. That structure forced the model to stay grounded.
+
+Here's what almost killed the project: my fine-tuning worked, but outputs were wildly inconsistent. Some summaries were detailed and useful. Others were vague one-liners. I checked my loss curves, my evaluation metrics. Everything looked fine. I was going insane until I actually read through my training data. Turns out I'd scraped summaries from different sources: some were detailed abstracts, some were Twitter-length announcements, some were related work sections. I was training the model to be inconsistent because my training data was inconsistent. Once I cleaned that up, everything clicked. Your model can only be as good as your data, and "more data" doesn't help if half of it is teaching the model the wrong thing.
+
+CapsNet was different. I chose it because the architecture genuinely fascinated me: the idea that you could encode pose and spatial relationships directly into the network structure. The paper made bold claims about how capsule networks would solve fundamental problems with CNNs. I wanted to see if that was real or hype.
+
+The challenge wasn't the math. The challenge was that the paper leaves out implementation details that matter enormously. What initialization scheme? What learning rate schedule? How exactly do you handle routing iterations during training versus inference? I'd change one hyperparameter and my accuracy would swing by 10 points. I spent weeks debugging, re-reading the paper, finding blog posts from people who'd tried to reproduce it. Eventually I got it working: about 2 percentage points higher top-1 accuracy than a ResNet-34 baseline on CIFAR-100, using about 40% fewer parameters. On paper, that's a win. In practice, it taught me that paper results are really hard to reproduce.
+
+Here's what CapsNet really taught me: reproducing research is harder than doing the research in the first place. When you're the first person trying something, you can pivot, adjust, redefine success. When you're trying to match someone else's numbers, you're stuck. And the 2pp improvement I got? It came at a massive computational cost. I learned to read papers with a more skeptical eye. "State of the art" often means "state of the art under very specific conditions with a lot of hyperparameter tuning that we didn't mention."
+
+Aurora prediction started as "this seems cool" and evolved into something I cared about. The basic idea: predict geomagnetic activity (Kp index) using solar wind data to forecast when auroras will be visible. Photographers and tourists travel to places like Iceland or Alaska hoping to see the northern lights with maybe a 24-hour window to plan. If I could build a model that predicts Kp index at 1-hour, 3-hour, 6-hour, and 12-hour horizons, that's actually useful to people.
+
+Time-series forecasting is its own beast. I'd done plenty of ML before, but temporal dependencies change everything. You can't just report "85% accuracy" and call it done. A model that's great at 1-hour predictions might be terrible at 12-hour predictions. I needed to evaluate performance at each time horizon separately because they're fundamentally different problems. Short-term forecasts can lean heavily on recent data; long-term forecasts need to capture underlying patterns.
+
+The project is still in progress, but I'm already thinking about deployment. How would this work as an API? What's the acceptable latency? What happens when real-time solar wind data is missing or delayed? In ML, I'm learning you have to think about deployment from day one, because it changes how you build the model."""
+        },
+        {
+            "heading": "Part 3: Favorite Class",
+            "content": """My favorite class was Responsible AI, taught by Jasmina Tacheva. It was completely different from everything else I took. Most classes followed the same pattern: learn algorithm, implement algorithm, tune hyperparameters, submit results. Responsible AI didn't work like that. We spent less time coding and more time reading papers, discussing case studies, debating ethical implications. We analyzed real systems (facial recognition, content moderation, hiring algorithms) and tore apart their assumptions. The class felt like a seminar, not a lecture. It was uncomfortable in the best way. You couldn't just be technically correct; you had to think about context, stakeholders, second-order effects.
+
+The assignment that stuck with me was analyzing TikTok's recommendation system, not the algorithm itself, but its social and ethical impact. We had to map out how the system worked, who it affected, what incentives it created, and where things could go wrong. I started thinking it was just clever use of collaborative filtering. By the end, I was looking at feedback loops that amplify extreme content, filter bubbles that narrow worldviews, and psychological manipulation baked into something as casual as scrolling through videos. The moment it clicked was realizing that AI doesn't just exist in research labs. It shapes every interaction people have online, often in ways they don't notice.
+
+The biggest impact? I now ask "should I build this?" before I ask "can I build this?" Every project since Responsible AI, I spend time thinking about potential harms, edge cases, and who might be negatively affected. I don't always have good answers, but at least I'm asking the questions. I also present projects differently now. I used to focus purely on performance: "I got 87% accuracy, here's my confusion matrix." Now I talk about limitations, failure modes, what the model gets wrong and why that matters. Responsible AI made me a more thoughtful engineer. I'd probably still be optimizing metrics without thinking too hard about what happens after deployment. Now I can't unsee that part."""
+        },
+        {
+            "heading": "Part 4: Beyond the Classroom",
+            "content": """I didn't do a formal internship, but I ended up mentoring a high school student on an AI bias project through a connection from Jasmina. The student was preparing for the Central New York science fair and had done previous work on AI ethics. We were scoping a project on bias mitigation strategies. The challenge was explaining AI bias without dumbing it down or drowning her in jargon. Every time I tried to explain fairness metrics or mitigation strategies, I realized I didn't understand them as well as I thought. If you can't explain it simply, you don't really get it. Teaching forced me to strip away technical language and find core concepts. Before the program, I would've helped her build something technically flashy. Now I was focused on building something that clearly demonstrated a concept, even if the implementation was simple."""
+        },
+        {
+            "heading": "Part 5: Key Learning Outcomes",
+            "content": """When I started, I thought "end-to-end ML" meant having a Jupyter notebook that ran without errors. Now I know it means data collection, cleaning, pipeline design, model training, evaluation across multiple dimensions, deployment strategy, monitoring, and explaining results to people who don't care about your F1 score. RAG-ception needed a data pipeline that could fetch papers from arXiv daily, parse PDFs reliably, handle duplicates, and store embeddings efficiently. Aurora needed multi-horizon evaluation, handling missing sensor data, and thinking about API latency requirements before the model even worked. The model is maybe 20% of the system. The other 80% is everything around it.
+
+I learned to do research by doing it badly first. CapsNet taught me that you can't just read a paper once and start coding. You need to read it three times, check the appendix, find the author's GitHub if it exists, and accept that you'll still be missing details. My process now: reproduce first, innovate later. I don't start from scratch anymore. I find the closest existing work, get their baseline running, and iterate from there. The other skill: documentation. I keep detailed experiment logs now of what I tried, why it failed, what I learned. Research is iterative, and iteration only works if you remember what you've already tried.
+
+I've written more in this program than I did in four years of undergrad. At first, this felt like busy work. Why am I writing ten pages when the code speaks for itself? But the code doesn't speak for itself. Code tells you what you did; writing tells you why you did it and whether it worked. I got better through repetition and necessity. The mentoring experience helped. Responsible AI helped. Now I structure explanations differently: start with the problem, explain why existing approaches fall short, describe what I did, show results, acknowledge limitations. No jargon unless necessary. If I can't explain my work clearly, that's a sign I don't understand it well enough."""
+        },
+        {
+            "heading": "Part 6: Surprises & Challenges",
+            "content": """The hardest moment? Right now. I'm writing this reflection while juggling three unfinished projects, a blog post requirement, and the reality that I graduate in two weeks. The challenge isn't any single technical concept. It's that I underestimated how long everything would take. I thought I could finish Aurora prediction in a month. It's been three. Every project expands to fill more time than you budget for because there's always one more experiment to run, one more bug to fix. The lesson I'm learning in real time: scope management is a skill, and I don't have it yet.
+
+Here's what surprised me: I genuinely love the experimentation part of ML. I thought it would be tedious. But there's something deeply satisfying about the scientific method at this scale. Every failed experiment tells you something. Every hyperparameter sweep narrows the search space. You're not just guessing; you're systematically exploring a problem space, and every result (good or bad) is information. Coming from DevOps where the goal was "make it work once and never touch it again," this iterative process felt chaotic at first. Now it feels like solving a puzzle where you get immediate feedback.
+
+What got me through: study groups and brute force persistence. There were nights where I'd be stuck on something for hours, throw it in the group chat, and someone would spot the issue in five minutes. I also learned that some problems don't have clever solutions. You just have to sit there and try things until one works. If I could give advice to myself two years ago: start projects earlier than you think you need to, because everything takes twice as long as you expect. And when you're in the middle of a deadline crunch, convinced you're not going to make it? You've got this."""
+        },
+        {
+            "heading": "Conclusion: Looking Forward",
+            "content": """The technical skills I'm taking aren't just about knowing PyTorch or TensorFlow. They're about how to approach problems systematically. I know how to read a research paper and actually implement it. I know how to debug a model that's not converging by checking data distributions, loss curves, gradient flows. I know how to build pipelines that don't break when data changes. But honestly, the non-technical skill matters more: communication. Being able to explain what I built, why it matters, what could go wrong, and what the limitations are. That's what makes the difference between a demo that impresses your professor and a system someone might actually use.
+
+I'm more cautious about AI than I was when I started, but also more impressed by what it can actually do. I've seen it work (really work) on problems I didn't think were solvable. These things feel like magic until you build them, and then they feel like applied statistics with really good engineering. But I'm also warier now. I've seen how easy it is to build something that works on a test set and fails in the real world. I've seen how a 15% error rate isn't just a number. It's people being affected by your system's failures. I'm less optimistic about AI solving everything, but more convinced that if we build it carefully, if we ask the right questions and design for humans (not just accuracy), it can actually help.
+
+I'm applying to both PhD programs and industry roles. PhD programs in human-centered AI and responsible ML interest me. I want to dig deeper into how we build systems that account for their impact, not just their performance. But I'm also drawn to industry roles where I'd work on production ML systems, because deployment is where the real challenges live. Two years ago I didn't know what I wanted. Now I have options and the skills to execute on whichever one I choose.
+
+If you're starting this program: start messy and iterate later. Don't wait for the perfect plan. Build something that runs, even if it's ugly, and improve it from there. Take the classes that scare you a little, the ones outside your comfort zone. And document everything as you go. Your future self will not remember why you made that design choice at 2am three weeks ago.
+
+I came into this program wanting technical skills. I'm leaving with those, but also with a completely different way of thinking about problems. I don't just ask "can I build this?" I ask "should I build this? Who does it affect? What happens when it fails?" That shift didn't come from one class or one project. It came from two years of building things, watching them break, fixing them, and realizing that the technical part is only half the problem. I'm not saying I've figured it all out. I'm still learning, still making mistakes, still underestimating how long things take. But I'm equipped now to keep learning, to keep building, and to keep asking the questions that matter."""
         }
     ]
 }
