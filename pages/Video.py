@@ -50,68 +50,9 @@ st.markdown("""
 # Video Container
 st.markdown("""
 <div class="video-container">
-    <div class="video-placeholder">
-        <div style="text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
-            <div>Video presentation coming soon</div>
-            <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem;">
-                YouTube embed will appear here
-            </div>
-        </div>
-    </div>
+    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/FIRkGEQl2CU?si=j3OvZ52WJXmdZd97"></iframe></div>
 </div>
 """, unsafe_allow_html=True)
-
-st.markdown("""
-<div style="max-width: 800px; margin: 2rem auto; padding: 0 2rem;">
-    <p style="color: var(--text-tertiary); font-size: 0.95rem; text-align: center; font-style: italic;">
-        To add your video: Upload to YouTube, then replace the placeholder above with:<br/>
-        <code style="background: var(--bg-light-gray); padding: 0.5rem; border-radius: 6px; display: inline-block; margin-top: 0.5rem;">
-        &lt;div class="video-wrapper"&gt;&lt;iframe src="YOUR_YOUTUBE_EMBED_URL"&gt;&lt;/iframe&gt;&lt;/div&gt;
-        </code>
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-# Gradient Divider
-st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
-
-# Video Topics Overview
-st.markdown('<div class="section-header">Presentation Topics</div>', unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown("""
-    <div class="card">
-        <div class="card-header">
-            <h3>📚 Program Summary</h3>
-        </div>
-        <div class="card-body">
-            <ul style="color: var(--text-secondary); line-height: 1.8;">
-                <li>Overall thoughts on the MS Applied Data Science program</li>
-                <li>Key learnings and takeaways</li>
-                <li>How the program prepared me for data science careers</li>
-            </ul>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div class="card">
-        <div class="card-header">
-            <h3>🎯 Learning Outcomes</h3>
-        </div>
-        <div class="card-body">
-            <ul style="color: var(--text-secondary); line-height: 1.8;">
-                <li>How I achieved the 6 program learning outcomes</li>
-                <li>Highlight of 2-3 key projects</li>
-                <li>Skills developed throughout the program</li>
-            </ul>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)

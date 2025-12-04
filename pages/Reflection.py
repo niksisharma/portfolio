@@ -49,20 +49,20 @@ st.markdown(f"""
     </div>
 """, unsafe_allow_html=True)
 
-# Table of Contents
-st.markdown("""
-<div style="background: var(--bg-light-gray); border-left: 4px solid var(--primary-sky); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem;">
-    <h3 style="margin-bottom: 1rem;">Table of Contents</h3>
-    <div class="blog-content" style="font-size: 0.95rem;">
-""", unsafe_allow_html=True)
+# # Table of Contents
+# st.markdown("""
+# <div style="background: var(--bg-light-gray); border-left: 4px solid var(--primary-sky); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem;">
+#     <h3 style="margin-bottom: 1rem;">Table of Contents</h3>
+#     <div class="blog-content" style="font-size: 0.95rem;">
+# """, unsafe_allow_html=True)
 
-for idx, section in enumerate(config.BLOG_POST['sections'], 1):
-    st.markdown(f"{idx}. {section['heading']}")
+# for idx, section in enumerate(config.BLOG_POST['sections'], 1):
+#     st.markdown(f"{idx}. {section['heading']}")
 
-st.markdown("""
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# st.markdown("""
+#     </div>
+# </div>
+# """, unsafe_allow_html=True)
 
 # Blog Content Sections
 for idx, section in enumerate(config.BLOG_POST['sections'], 1):

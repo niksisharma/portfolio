@@ -153,49 +153,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3.75rem;
+    font-size: 4.5rem;
     margin-bottom: var(--spacing-lg);
     font-weight: 700;
 }
 
 h2 {
-    font-size: 2.75rem;
+    font-size: 3.25rem;
     margin-bottom: var(--spacing-md);
     font-weight: 600;
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.85rem;
     margin-bottom: var(--spacing-sm);
     font-weight: 600;
 }
 
 h4 {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
     margin-bottom: var(--spacing-sm);
     font-weight: 500;
 }
 
 p {
-    line-height: 1.85;
+    line-height: 1.9;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
-    font-size: 1.05rem;
+    font-size: 1.25rem;
 }
 
 .subtitle {
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     color: var(--text-tertiary);
     font-weight: 400;
     margin-bottom: var(--spacing-sm);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* ===========================
    SECTION HEADERS
    =========================== */
 .section-header {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
     font-weight: 600;
     color: var(--text-primary);
     margin: var(--spacing-2xl) 0 var(--spacing-xl) 0;
@@ -206,7 +206,7 @@ p {
 .section-header::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 70px;
     height: 3px;
     background: linear-gradient(90deg, var(--primary-sky), transparent);
     margin-top: 0.75rem;

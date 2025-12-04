@@ -123,89 +123,49 @@ for idx, interest in enumerate(config.INTERESTS):
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
-# Quick Stats
-st.markdown('<div class="section-header">At a Glance</div>', unsafe_allow_html=True)
+# Connect Section - Redesigned
+st.markdown('<div class="section-header">Get in Touch</div>', unsafe_allow_html=True)
 
-col1, col2, col3, col4 = st.columns(4)
+st.markdown("""
+<div style="max-width: 700px; margin: 0 auto 3rem auto; text-align: center;">
+    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.8;">
+        Interested in discussing data science, machine learning, or collaboration opportunities? Feel free to reach out.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
-with col1:
-    st.markdown("""
-    <div class="stat-card">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Projects Completed</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div class="stat-card">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Learning Outcomes</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown(f"""
-    <div class="stat-card">
-        <div class="stat-value">{len(config.SKILLS)}</div>
-        <div class="stat-label">Technical Skills</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col4:
-    st.markdown("""
-    <div class="stat-card">
-        <div class="stat-value">3.88</div>
-        <div class="stat-label">GPA</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Gradient Divider
-st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
-
-# Connect Section
-st.markdown('<div class="section-header">Connect</div>', unsafe_allow_html=True)
-
-col1, col2, col3, col4 = st.columns(4)
+# Contact links in a cleaner layout
+col1, col2, col3 = st.columns([1, 1, 1])
 
 with col1:
-    st.markdown("""
-    <div class="interest-item">
-        <div class="interest-icon">📧</div>
-        <h3>Email</h3>
-    </div>
-    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('email'):
-        st.link_button("Send Email", f"mailto:{config.PERSONAL_INFO['email']}", use_container_width=True)
+        st.markdown("""
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;">📧</span>
+            <p style="font-size: 1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">Email</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Send Message", f"mailto:{config.PERSONAL_INFO['email']}", use_container_width=True)
 
 with col2:
-    st.markdown("""
-    <div class="interest-item">
-        <div class="interest-icon">💼</div>
-        <h3>LinkedIn</h3>
-    </div>
-    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('linkedin'):
+        st.markdown("""
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;">💼</span>
+            <p style="font-size: 1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">LinkedIn</p>
+        </div>
+        """, unsafe_allow_html=True)
         st.link_button("Connect", config.PERSONAL_INFO['linkedin'], use_container_width=True)
 
 with col3:
-    st.markdown("""
-    <div class="interest-item">
-        <div class="interest-icon">💻</div>
-        <h3>GitHub</h3>
-    </div>
-    """, unsafe_allow_html=True)
     if config.PERSONAL_INFO.get('github'):
-        st.link_button("Follow", config.PERSONAL_INFO['github'], use_container_width=True)
-
-with col4:
-    st.markdown("""
-    <div class="interest-item">
-        <div class="interest-icon">🎥</div>
-        <h3>Video</h3>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Watch Presentation", "/Video", use_container_width=True)
+        st.markdown("""
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.75rem;">💻</span>
+            <p style="font-size: 1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem;">GitHub</p>
+        </div>
+        """, unsafe_allow_html=True)
+        st.link_button("View Code", config.PERSONAL_INFO['github'], use_container_width=True)
 
 # Footer
 st.markdown(f"""
