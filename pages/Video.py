@@ -42,17 +42,24 @@ st.markdown("""
 <div style="text-align: center; margin: 3rem 0 2rem 0;">
     <h1>Video Presentation</h1>
     <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: 1rem;">
-        A 1-2 minute summary of my MS Applied Data Science program experience
+        A short summary of my MS Applied Data Science program experience
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 # Video Container
-st.markdown("""
-<div class="video-container">
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/FIRkGEQl2CU?si=j3OvZ52WJXmdZd97"></iframe></div>
+video_embed_url = "https://drive.google.com/file/d/1aFP48rJ1Ea7Zdl4OmMYwrBBuPhcanHHK/preview"
+
+st.markdown(f"""
+<div style='position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px;'>
+    <iframe src="{video_embed_url}"
+            style='position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;'
+            allow='autoplay; encrypted-media'
+            allowfullscreen>
+    </iframe>
 </div>
 """, unsafe_allow_html=True)
+
 
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)

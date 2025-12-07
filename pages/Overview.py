@@ -69,8 +69,11 @@ for lo_id, lo in config.LEARNING_OUTCOMES.items():
                 {lo['title']}
             </h3>
         </div>
-        <p style="color: var(--text-secondary); margin: 0 0 0 3.5rem; font-size: 1.1rem; line-height: 1.85;">
-            {lo['description']}
+        <p style="color: var(--text-secondary); margin: 0 0 0.5rem 3.5rem; font-size: 0.95rem; line-height: 1.6; font-style: italic;">
+            "{lo['official_description']}"
+        </p>
+        <p style="color: var(--text-primary); margin: 0.75rem 0 0 3.5rem; font-size: 1.05rem; line-height: 1.85;">
+            <strong>My Understanding:</strong> {lo['my_understanding']}
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -91,36 +94,35 @@ st.markdown("""
 
 # Matrix table
 matrix_html = """
-<div class="card">
-    <div class="card-body" style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr style="background: linear-gradient(135deg, var(--primary-sky-light), var(--accent-sage-light)); border-bottom: 2px solid var(--primary-sky);">
-                    <th style="padding: 1rem; text-align: left; border-right: 1px solid var(--border-light); font-weight: 600;">Project</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO1</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO2</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO3</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO4</th>
-                    <th style="padding: 1rem; text-align: center; border-right: 1px solid var(--border-light); font-weight: 600;">LO5</th>
-                    <th style="padding: 1rem; text-align: center; font-weight: 600;">LO6</th>
-                </tr>
-            </thead>
-            <tbody>
+<div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; background: white;">
+        <thead>
+            <tr style="background: linear-gradient(135deg, #E3F2FD, #E8F5E9); border-bottom: 2px solid #2196F3;">
+                <th style="padding: 1rem; text-align: left; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">Project</th>
+                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO1</th>
+                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO2</th>
+                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO3</th>
+                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO4</th>
+                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO5</th>
+                <th style="padding: 1rem; text-align: center; font-weight: 600; color: #1976D2;">LO6</th>
+            </tr>
+        </thead>
+        <tbody>
 """
 
 for project in config.PROJECTS:
     matrix_html += f"""
-                <tr style="border-bottom: 1px solid var(--border-light);">
-                    <td style="padding: 0.8rem; font-weight: 500; border-right: 1px solid var(--border-light);">{project['title']}</td>
+                <tr style="border-bottom: 1px solid #E0E0E0;">
+                    <td style="padding: 0.8rem; font-weight: 500; border-right: 1px solid #E0E0E0; color: #333;">{project['title']}</td>
     """
 
     for i in range(1, 7):
         lo_id = f"LO{i}"
-        border_style = 'border-right: 1px solid var(--border-light);' if i < 6 else ''
+        border_style = 'border-right: 1px solid #E0E0E0;' if i < 6 else ''
         if lo_id in project.get('learning_outcomes', []):
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: var(--accent-sage-dark); font-size: 1.3rem; font-weight: bold;">✓</span></td>'
+            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: #4CAF50; font-size: 1.3rem; font-weight: bold;">✓</span></td>'
         else:
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: var(--text-muted);">—</span></td>'
+            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: #999;">—</span></td>'
 
     matrix_html += """
                 </tr>
@@ -155,7 +157,7 @@ st.markdown('<div class="section-header">How I Achieved Each Learning Outcome</d
 # For each LO, show which projects demonstrate it and how
 for lo_id, lo in config.LEARNING_OUTCOMES.items():
     with st.expander(f"🎯 LO{lo['number']}: {lo['title']}", expanded=False):
-        st.markdown(f"**{lo['description']}**")
+        st.markdown(f"**{lo['official_description']}**")
         st.markdown("---")
 
         # Find all projects that demonstrate this LO
@@ -229,31 +231,6 @@ for project in config.PROJECTS:
 
             if project.get('demo'):
                 st.link_button("Live Demo →", project['demo'], use_container_width=True)
-
-# Gradient Divider
-st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
-
-# Skills Developed
-st.markdown('<div class="section-header">Technical Skills Developed</div>', unsafe_allow_html=True)
-
-st.markdown("""
-<div class="card" style="margin-bottom: 2rem;">
-    <div class="card-body">
-        <p>Through coursework and projects, I have developed proficiency across the following technical areas:</p>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-cols = st.columns(4)
-
-for idx, skill in enumerate(config.SKILLS):
-    with cols[idx % 4]:
-        st.markdown(f"""
-        <div class="skill-card">
-            <h3>{skill['name']}</h3>
-            <div class="skill-level">{skill['level']}</div>
-        </div>
-        """, unsafe_allow_html=True)
 
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)

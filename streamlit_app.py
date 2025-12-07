@@ -68,7 +68,7 @@ with col2:
             <h3>💻 Projects</h3>
         </div>
         <div class="card-body">
-            <p>Detailed descriptions of 6 data science projects from the MS program</p>
+            <p>Detailed descriptions of data science projects from the MS Applied Data Science program</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -81,7 +81,7 @@ with col3:
             <h3>📝 Reflection</h3>
         </div>
         <div class="card-body">
-            <p>In-depth reflection on the MS Applied Data Science program experience</p>
+            <p>An in-depth reflection on the MS Applied Data Science program experience</p>
         </div>
     </div>
     """, unsafe_allow_html=True)

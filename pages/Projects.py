@@ -69,9 +69,6 @@ with col2:
         key="tech_filter"
     )
 
-with col3:
-    show_featured = st.checkbox("Featured Only", value=False)
-
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
@@ -84,17 +81,12 @@ if status_filter != "All":
 if tech_filter != "All":
     filtered_projects = [p for p in filtered_projects if tech_filter in p['tech_stack']]
 
-if show_featured:
-    filtered_projects = [p for p in filtered_projects if p.get('featured', False)]
-
 # Display projects count
 st.markdown(f'<div class="section-header">Showing {len(filtered_projects)} Projects</div>', unsafe_allow_html=True)
 
 # Project Grid
 for project in filtered_projects:
     # Project Card
-    featured_badge = '⭐ ' if project.get('featured') else ''
-
     st.markdown(f"""
     <div class="project-card">
         <div class="project-image-container">
@@ -104,7 +96,7 @@ for project in filtered_projects:
 
     st.markdown(f"""
         <div class="project-header">
-            <h3>{featured_badge}{project['title']}</h3>
+            <h3>{project['title']}</h3>
             <div class="project-meta">{project['date']} | {project['status']}</div>
         </div>
     """, unsafe_allow_html=True)

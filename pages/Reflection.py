@@ -85,37 +85,6 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
-# Instructions for adding reflection
-st.markdown("""
-<div class="card" style="max-width: 900px; margin: 2rem auto; background: var(--primary-sky-light);">
-    <div class="card-header">
-        <h3>📝 How to Add Your Reflection</h3>
-    </div>
-    <div class="card-body">
-        <p><strong>To replace this placeholder with your 3000-word reflection:</strong></p>
-        <ol style="line-height: 1.8; color: var(--text-secondary);">
-            <li>Open <code>config.py</code></li>
-            <li>Find the <code>BLOG_POST</code> dictionary (around line 352)</li>
-            <li>Replace the placeholder content with your reflection text</li>
-            <li>Structure it into sections (e.g., Introduction, Learning Outcomes, Projects, Favorite Class, Conclusion)</li>
-            <li>Each section should have a "heading" and "content" field</li>
-        </ol>
-        <p style="margin-top: 1rem;"><strong>Your reflection should cover:</strong></p>
-        <ul style="line-height: 1.8; color: var(--text-secondary);">
-            <li>What you expected vs. what you learned</li>
-            <li>How you achieved each learning outcome (with project examples)</li>
-            <li>Description of 3 key projects and their contributions to your education</li>
-            <li>Internship, iConsult, or outside projects (if applicable)</li>
-            <li>Your favorite class and why</li>
-            <li>Best parts of the program and biggest surprises</li>
-        </ul>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# Gradient Divider
-st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
-
 # Related Links
 st.markdown('<div class="section-header" style="text-align: center; margin-top: 3rem;">Explore More</div>', unsafe_allow_html=True)
 
