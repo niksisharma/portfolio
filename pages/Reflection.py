@@ -39,30 +39,10 @@ st.markdown(f"""
 # Blog Post Container
 st.markdown(f"""
 <div class="blog-post">
-    <div class="blog-header">
-        <h1>{config.BLOG_POST['title']}</h1>
-        <div class="blog-meta">
-            <span>📅 {config.BLOG_POST['date']}</span>
-            <span>⏱️ {config.BLOG_POST['read_time']}</span>
-            <span>📝 ~3000 words</span>
-        </div>
+<div class="hero-section" style="background: linear-gradient(135deg, rgba(168, 216, 234, 0.3) 0%, rgba(184, 212, 186, 0.3) 50%, rgba(245, 183, 177, 0.2) 100%); padding: 4rem 2rem; border-radius: 16px; margin-bottom: 2rem;">
+        <h1 style="color: #212121;">{config.BLOG_POST['title']}</h1>
     </div>
 """, unsafe_allow_html=True)
-
-# # Table of Contents
-# st.markdown("""
-# <div style="background: var(--bg-light-gray); border-left: 4px solid var(--primary-sky); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem;">
-#     <h3 style="margin-bottom: 1rem;">Table of Contents</h3>
-#     <div class="blog-content" style="font-size: 0.95rem;">
-# """, unsafe_allow_html=True)
-
-# for idx, section in enumerate(config.BLOG_POST['sections'], 1):
-#     st.markdown(f"{idx}. {section['heading']}")
-
-# st.markdown("""
-#     </div>
-# </div>
-# """, unsafe_allow_html=True)
 
 # Blog Content Sections
 for idx, section in enumerate(config.BLOG_POST['sections'], 1):

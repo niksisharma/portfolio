@@ -38,7 +38,7 @@ st.markdown(f"""
 
 # Page Header
 st.markdown("""
-<div style="text-align: center; margin: 3rem 0 2rem 0;">
+<div class="hero-section" style="background: linear-gradient(135deg, rgba(168, 216, 234, 0.3) 0%, rgba(184, 212, 186, 0.3) 50%, rgba(245, 183, 177, 0.2) 100%); padding: 4rem 2rem; border-radius: 16px; margin-bottom: 2rem;">
     <h1>Project Portfolio</h1>
     <p style="font-size: 1.2rem; color: var(--text-secondary); margin-top: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
         A collection of data science and machine learning projects demonstrating end-to-end system development, from data collection to deployment.
