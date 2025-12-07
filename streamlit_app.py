@@ -40,7 +40,6 @@ st.markdown(f"""
 <div class="hero-section">
     <h1>{config.PERSONAL_INFO['name']}</h1>
     <div class="subtitle">{config.PERSONAL_INFO['title']}</div>
-    <p style="font-size: 1.1rem; margin-top: 1rem;">{config.PERSONAL_INFO['tagline']}</p>
 </div>
 """, unsafe_allow_html=True)
 
