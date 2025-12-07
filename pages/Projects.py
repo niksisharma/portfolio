@@ -99,8 +99,7 @@ for project in config.PROJECTS:
 
     with button_cols[0]:
         if project.get('id'):
-            project_page_name = ''.join(word.capitalize() for word in project['id'].split('-'))
-            st.link_button("View Details", f"/projects/{project_page_name}", use_container_width=True)
+            st.link_button("View Details", f"/Project_Details?id={project['id']}", use_container_width=True)
 
     with button_cols[1]:
         if project.get('github'):

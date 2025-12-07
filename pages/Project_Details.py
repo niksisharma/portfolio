@@ -1,29 +1,44 @@
 import streamlit as st
 from pathlib import Path
 import sys
-sys.path.append(str(Path(__file__).parent.parent.parent))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 
-PROJECT_ID = 'cusebus'
-
 st.set_page_config(
-    page_title="Syracuse University Bus System Optimization - Project Details",
+    page_title="Project Details",
     page_icon="💼",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 def load_css():
-    css_file = Path(__file__).parent.parent.parent / "assets" / "style.css"
+    css_file = Path(__file__).parent.parent / "assets" / "style.css"
     with open(css_file) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_css()
 
-project = next((p for p in config.PROJECTS if p['id'] == PROJECT_ID), None)
+# Get project ID from query parameters
+try:
+    # Try new API first (Streamlit >= 1.30)
+    query_params = st.query_params
+    project_id = query_params.get("id", None)
+except AttributeError:
+    # Fall back to old API
+    query_params = st.experimental_get_query_params()
+    project_id = query_params.get("id", [None])[0]
+
+if not project_id:
+    st.error("No project specified. Please select a project from the Projects page.")
+    st.link_button("Go to Projects", "/Projects", use_container_width=False)
+    st.stop()
+
+# Get project data
+project = next((p for p in config.PROJECTS if p['id'] == project_id), None)
 
 if not project:
-    st.error(f"Project with ID '{PROJECT_ID}' not found in config.PROJECTS")
+    st.error(f"Project '{project_id}' not found.")
+    st.link_button("Go to Projects", "/Projects", use_container_width=False)
     st.stop()
 
 # Top Navigation
@@ -135,7 +150,7 @@ if project.get('challenges'):
     st.markdown('<div class="section-header">Challenges</div>', unsafe_allow_html=True)
     for idx, challenge in enumerate(project['challenges'], 1):
         st.markdown(f"""
-        <div style="background: rgba(255, 255, 255, 0.4); padding: 1.25rem; border-radius: 8px; margin-bottom: 1rem;">
+        <div style="background: rgba(255, 255, 255, 0.4); padding: 1.25rem; border-radius: 12px; margin-bottom: 1rem;">
             <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;"><strong style="color: var(--accent-rose-dark);">{idx}.</strong> {challenge}</p>
         </div>
         """, unsafe_allow_html=True)
