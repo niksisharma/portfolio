@@ -52,8 +52,8 @@ st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-header">Program Learning Outcomes</div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div style="max-width: 900px; margin: 0 auto 2rem auto;">
-    <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; text-align: center;">
+<div style="max-width: 950px; margin: 0 auto 3rem auto;">
+    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.85; text-align: center;">
         The MS in Applied Data Science program at Syracuse University is designed to develop interdisciplinary expertise across technical, analytical, and ethical dimensions of data science. Through coursework and applied projects, I have achieved the following learning outcomes:
     </p>
 </div>
@@ -62,18 +62,18 @@ st.markdown("""
 # Display each learning outcome with clean, readable style
 for lo_id, lo in config.LEARNING_OUTCOMES.items():
     st.markdown(f"""
-    <div style="margin-bottom: 2.5rem;">
-        <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.75rem;">
-            <span style="color: var(--primary-sky-dark); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em;">LO{lo['number']}</span>
-            <h3 style="margin: 0; font-size: 1.5rem; font-weight: 600; color: var(--text-primary);">
+    <div style="margin-bottom: 3rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.4); border-radius: 12px; border-left: 4px solid var(--primary-sky);">
+        <div style="display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem;">
+            <span style="color: var(--primary-sky-dark); font-weight: 700; font-size: 1rem; letter-spacing: 0.05em;">LO{lo['number']}</span>
+            <h3 style="margin: 0; font-size: 1.75rem; font-weight: 600; color: var(--text-primary);">
                 {lo['title']}
             </h3>
         </div>
-        <p style="color: var(--text-secondary); margin: 0 0 0.5rem 3.5rem; font-size: 0.95rem; line-height: 1.6; font-style: italic;">
+        <p style="color: var(--text-secondary); margin: 0 0 1rem 3.5rem; font-size: 1.05rem; line-height: 1.7; font-style: italic;">
             "{lo['official_description']}"
         </p>
-        <p style="color: var(--text-primary); margin: 0.75rem 0 0 3.5rem; font-size: 1.05rem; line-height: 1.85;">
-            <strong>My Understanding:</strong> {lo['my_understanding']}
+        <p style="color: var(--text-primary); margin: 0.75rem 0 0 3.5rem; font-size: 1.1rem; line-height: 1.9;">
+            <strong style="font-weight: 600;">My Understanding:</strong> {lo['my_understanding']}
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -85,10 +85,8 @@ st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-header">Learning Outcome Achievement Matrix</div>', unsafe_allow_html=True)
 
 st.markdown("""
-<div class="card" style="margin-bottom: 2rem;">
-    <div class="card-body">
-        <p>The table below maps each project to the specific learning outcomes it demonstrates. This matrix shows how my project portfolio comprehensively addresses all program learning outcomes.</p>
-    </div>
+<div style="margin-bottom: 2.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.4); border-radius: 12px;">
+    <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin: 0;">The table below maps each project to the specific learning outcomes it demonstrates. This matrix shows how my project portfolio comprehensively addresses all program learning outcomes.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -138,12 +136,10 @@ st.markdown("""
 
 # Legend
 st.markdown("""
-<div class="card" style="margin-top: 1rem; background: var(--bg-light-gray);">
-    <div class="card-body">
-        <p style="font-size: 0.9rem; color: var(--text-tertiary); margin: 0;">
-            <strong>Legend:</strong> LO1 = Data Collection & Storage | LO2 = Actionable Insights | LO3 = Visualization & Predictive Models | LO4 = Programming Proficiency | LO5 = Communication | LO6 = Ethics & Responsible AI
-        </p>
-    </div>
+<div style="margin-top: 2rem; padding: 1.25rem; background: rgba(168, 216, 234, 0.1); border-radius: 10px; border: 1px solid var(--primary-sky);">
+    <p style="font-size: 1rem; color: var(--text-secondary); margin: 0; line-height: 1.7;">
+        <strong style="font-weight: 600; color: var(--text-primary);">Legend:</strong> LO1 = Data Collection & Storage | LO2 = Actionable Insights | LO3 = Visualization & Predictive Models | LO4 = Programming Proficiency | LO5 = Communication | LO6 = Ethics & Responsible AI
+    </p>
 </div>
 """, unsafe_allow_html=True)
 

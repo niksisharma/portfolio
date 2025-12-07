@@ -72,23 +72,23 @@ for project in config.PROJECTS:
 
         st.markdown(f"""
         <div class="project-body">
-            <p><strong>{project['subtitle']}</strong></p>
-            <p>{project['short_description']}</p>
+            <p style="font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem;">{project['subtitle']}</p>
+            <p style="font-size: 1.05rem; line-height: 1.8;">{project['short_description']}</p>
         </div>
         """, unsafe_allow_html=True)
 
         # Tech tags
-        st.markdown('<div class="tech-label">Technologies</div>', unsafe_allow_html=True)
+        st.markdown('<div class="tech-label" style="margin-top: 1.5rem;">Technologies</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="tech-tags">{tech_tags_html}</div>', unsafe_allow_html=True)
 
         # Learning Outcomes
-        st.markdown('<div class="tech-label" style="margin-top: 1rem;">Learning Outcomes</div>', unsafe_allow_html=True)
+        st.markdown('<div class="tech-label" style="margin-top: 1.5rem;">Learning Outcomes</div>', unsafe_allow_html=True)
         st.markdown(f'<div>{los_badges}</div>', unsafe_allow_html=True)
 
     with image_col:
         st.markdown("""
-        <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 200px;">
-            <div class="project-placeholder">Project Screenshot</div>
+        <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 220px; border-radius: 12px; overflow: hidden;">
+            <div class="project-placeholder" style="font-size: 1rem;">Project Screenshot</div>
         </div>
         """, unsafe_allow_html=True)
 

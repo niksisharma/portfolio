@@ -35,11 +35,11 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Hero Section - Modern Landing
+# Hero Section - Modern Landing with Gradient
 st.markdown(f"""
-<div class="hero-section">
-    <h1>{config.PERSONAL_INFO['name']}</h1>
-    <div class="subtitle">{config.PERSONAL_INFO['title']}</div>
+<div class="hero-section" style="background: linear-gradient(135deg, rgba(168, 216, 234, 0.3) 0%, rgba(184, 212, 186, 0.3) 50%, rgba(245, 183, 177, 0.2) 100%); padding: 4rem 2rem; border-radius: 16px; margin-bottom: 2rem;">
+    <h1 style="color: #212121;">{config.PERSONAL_INFO['name']}</h1>
+    <div class="subtitle" style="color: #212121;">{config.PERSONAL_INFO['title']}</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -50,12 +50,12 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
-    <div class="card">
+    <div class="card" style="background: rgba(255, 255, 255, 0.5); padding: 2rem; border-radius: 12px; border: 1px solid rgba(168, 216, 234, 0.3);">
         <div class="card-header">
-            <h3>📋 Overview</h3>
+            <h3 style="font-size: 1.65rem;">📋 Overview</h3>
         </div>
         <div class="card-body">
-            <p>Program learning outcomes, project summaries, and achievement explanations</p>
+            <p style="font-size: 1.05rem;">Program learning outcomes, project summaries, and achievement explanations</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -63,12 +63,12 @@ with col1:
 
 with col2:
     st.markdown("""
-    <div class="card">
+    <div class="card" style="background: rgba(255, 255, 255, 0.5); padding: 2rem; border-radius: 12px; border: 1px solid rgba(168, 216, 234, 0.3);">
         <div class="card-header">
-            <h3>💻 Projects</h3>
+            <h3 style="font-size: 1.65rem;">💻 Projects</h3>
         </div>
         <div class="card-body">
-            <p>Detailed descriptions of data science projects from the MS Applied Data Science program</p>
+            <p style="font-size: 1.05rem;">Detailed descriptions of data science projects from the MS Applied Data Science program</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -76,12 +76,12 @@ with col2:
 
 with col3:
     st.markdown("""
-    <div class="card">
+    <div class="card" style="background: rgba(255, 255, 255, 0.5); padding: 2rem; border-radius: 12px; border: 1px solid rgba(168, 216, 234, 0.3);">
         <div class="card-header">
-            <h3>📝 Reflection</h3>
+            <h3 style="font-size: 1.65rem;">📝 Reflection</h3>
         </div>
         <div class="card-body">
-            <p>An in-depth reflection on the MS Applied Data Science program experience</p>
+            <p style="font-size: 1.05rem;">An in-depth reflection on the MS Applied Data Science program experience</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -98,8 +98,8 @@ for idx, skill in enumerate(config.SKILLS):
     with cols[idx % 4]:
         st.markdown(f"""
         <div class="skill-card">
-            <h3>{skill['name']}</h3>
-            <div class="skill-level">{skill['level']}</div>
+            <h3 style="font-size: 1.2rem;">{skill['name']}</h3>
+            <div class="skill-level" style="font-size: 1rem;">{skill['level']}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -115,7 +115,7 @@ for idx, interest in enumerate(config.INTERESTS):
         st.markdown(f"""
         <div class="interest-item">
             <div class="interest-icon">{interest['icon']}</div>
-            <h3>{interest['name']}</h3>
+            <h3 style="font-size: 1.15rem;">{interest['name']}</h3>
         </div>
         """, unsafe_allow_html=True)
 

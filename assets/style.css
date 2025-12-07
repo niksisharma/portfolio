@@ -125,7 +125,7 @@ html {
     color: var(--text-secondary);
     text-decoration: none;
     padding: var(--spacing-xs) var(--spacing-md);
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     font-weight: 500;
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
@@ -135,10 +135,11 @@ html {
 .nav-link:hover {
     color: var(--text-primary);
     background-color: var(--bg-light-gray);
+    transform: translateY(-1px);
 }
 
 .nav-link:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
 }
 
 /* ===========================
@@ -180,11 +181,11 @@ p {
     line-height: 1.9;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
-    font-size: 1.25rem;
+    font-size: 1.1rem;
 }
 
 .subtitle {
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     color: var(--text-tertiary);
     font-weight: 400;
     margin-bottom: var(--spacing-sm);
@@ -195,7 +196,7 @@ p {
    SECTION HEADERS
    =========================== */
 .section-header {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--text-primary);
     margin: var(--spacing-2xl) 0 var(--spacing-xl) 0;
@@ -206,8 +207,8 @@ p {
 .section-header::after {
     content: '';
     display: block;
-    width: 70px;
-    height: 3px;
+    width: 80px;
+    height: 4px;
     background: linear-gradient(90deg, var(--primary-sky), transparent);
     margin-top: 0.75rem;
 }
@@ -226,15 +227,12 @@ p {
 }
 
 .hero-section h1 {
-    background: linear-gradient(135deg, var(--primary-sky-dark), var(--accent-rose-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #000000 !important;
     margin-bottom: var(--spacing-sm);
 }
 
 .hero-section .subtitle {
-    color: var(--text-secondary);
+    color: #212121 !important;
     font-size: 1.35rem;
 }
 
@@ -245,12 +243,12 @@ p {
     background: transparent;
     border: none;
     border-radius: 0;
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0;
     box-shadow: none;
     transition: all 0.3s ease;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
     border-left: 3px solid transparent;
-    padding-left: var(--spacing-lg);
+    padding-left: var(--spacing-xl);
 }
 
 .card:hover {
@@ -266,8 +264,8 @@ p {
 }
 
 .card-body p {
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: 1.15rem;
+    line-height: 1.9;
 }
 
 /* ===========================
@@ -342,20 +340,20 @@ p {
    PROJECT CARDS
    =========================== */
 .project-card {
-    background: transparent;
-    border: none;
-    border-radius: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(168, 216, 234, 0.2);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
-    margin-bottom: var(--spacing-xl);
-    padding: var(--spacing-xl) 0;
-    border-bottom: 1px solid rgba(168, 216, 234, 0.15);
+    margin-bottom: 2.5rem;
+    padding: 2rem;
 }
 
 .project-card:hover {
-    transform: translateX(8px);
-    border-bottom-color: var(--primary-sky);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-sky);
 }
 
 .project-image-container {
@@ -385,14 +383,14 @@ p {
 }
 
 .project-header h3 {
-    font-size: 1.5rem;
+    font-size: 1.85rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
 }
 
 .project-meta {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--text-tertiary);
     font-weight: 500;
 }
@@ -404,41 +402,44 @@ p {
 .project-body p {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
 /* ===========================
    TECH TAGS
    =========================== */
 .tech-label {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-tertiary);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: var(--spacing-sm);
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
 }
 
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.65rem;
     margin: var(--spacing-sm) 0;
 }
 
 .tech-tag {
-    background: transparent;
+    background: rgba(168, 216, 234, 0.15);
     color: var(--primary-sky-dark);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 24px;
+    font-size: 0.95rem;
     font-weight: 500;
-    border: 1px solid var(--primary-sky);
+    border: 1.5px solid var(--primary-sky);
     transition: all 0.2s ease;
 }
 
 .tech-tag:hover {
     background: var(--primary-sky-light);
     border-color: var(--primary-sky-dark);
+    transform: translateY(-2px);
 }
 
 /* ===========================
@@ -446,21 +447,22 @@ p {
    =========================== */
 .lo-badge {
     display: inline-block;
-    background: transparent;
+    background: rgba(184, 212, 186, 0.15);
     color: var(--accent-sage-dark);
-    padding: 0.35rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    border-radius: 24px;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid var(--accent-sage);
+    margin-right: 0.65rem;
+    margin-bottom: 0.65rem;
+    border: 1.5px solid var(--accent-sage);
     transition: all 0.2s ease;
 }
 
 .lo-badge:hover {
     background: var(--accent-sage-light);
     border-color: var(--accent-sage-dark);
+    transform: translateY(-2px);
 }
 
 .lo-section {
@@ -480,11 +482,11 @@ p {
     background: linear-gradient(135deg, var(--primary-sky), var(--primary-sky-dark));
     border: none;
     border-radius: var(--radius-md);
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 1.75rem;
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #FFFFFF !important;
     cursor: pointer;
     box-shadow: var(--shadow-md);
     transition: all 0.3s ease;
@@ -493,14 +495,14 @@ p {
 }
 
 .modern-button:hover, .stButton > button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
     background: linear-gradient(135deg, var(--primary-sky-dark), var(--primary-sky));
 }
 
 .modern-button:active, .stButton > button:active {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .button-secondary {
@@ -512,6 +514,12 @@ p {
 .button-secondary:hover {
     background: var(--bg-light-gray);
     border-color: var(--primary-sky);
+}
+
+/* Link buttons - ensure white text */
+[data-testid="stLinkButton"] > a,
+[data-testid="stLinkButton"] > a > div {
+    color: #FFFFFF !important;
 }
 
 /* ===========================
