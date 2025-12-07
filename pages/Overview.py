@@ -92,50 +92,49 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Matrix table
-matrix_html = """
-<div style="background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; background: white;">
+# Matrix table with enhanced visibility
+st.markdown("""
+<div style="background: #FFFFFF; border: 2px solid #BDBDBD; border-radius: 12px; padding: 2rem; margin: 2rem auto; max-width: 1200px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <table style="width: 100%; border-collapse: separate; border-spacing: 0; background: #FFFFFF;">
         <thead>
-            <tr style="background: linear-gradient(135deg, #E3F2FD, #E8F5E9); border-bottom: 2px solid #2196F3;">
-                <th style="padding: 1rem; text-align: left; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">Project</th>
-                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO1</th>
-                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO2</th>
-                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO3</th>
-                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO4</th>
-                <th style="padding: 1rem; text-align: center; border-right: 1px solid #E0E0E0; font-weight: 600; color: #1976D2;">LO5</th>
-                <th style="padding: 1rem; text-align: center; font-weight: 600; color: #1976D2;">LO6</th>
+            <tr style="background: linear-gradient(135deg, #E3F2FD 0%, #E8F5E9 100%);">
+                <th style="padding: 1.2rem 1rem; text-align: left; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">Project</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO1</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO2</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO3</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO4</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-right: 2px solid #BDBDBD; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO5</th>
+                <th style="padding: 1.2rem 1rem; text-align: center; border-bottom: 2px solid #2196F3; font-weight: 700; color: #1565C0; font-size: 1rem;">LO6</th>
             </tr>
         </thead>
         <tbody>
-"""
+""", unsafe_allow_html=True)
 
+# Build table rows
 for project in config.PROJECTS:
-    matrix_html += f"""
-                <tr style="border-bottom: 1px solid #E0E0E0;">
-                    <td style="padding: 0.8rem; font-weight: 500; border-right: 1px solid #E0E0E0; color: #333;">{project['title']}</td>
-    """
+    # Start row
+    row_html = f'<tr style="background: #FFFFFF;"><td style="padding: 1rem; font-weight: 600; border-right: 2px solid #BDBDBD; border-bottom: 1px solid #E0E0E0; color: #212121; font-size: 0.95rem;">{project["title"]}</td>'
 
+    # Add cells for each LO
     for i in range(1, 7):
         lo_id = f"LO{i}"
-        border_style = 'border-right: 1px solid #E0E0E0;' if i < 6 else ''
+        border_right = 'border-right: 2px solid #BDBDBD;' if i < 6 else ''
         if lo_id in project.get('learning_outcomes', []):
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: #4CAF50; font-size: 1.3rem; font-weight: bold;">✓</span></td>'
+            row_html += f'<td style="padding: 1rem; text-align: center; {border_right} border-bottom: 1px solid #E0E0E0; background: #FFFFFF;"><span style="color: #388E3C; font-size: 1.5rem; font-weight: bold;">✓</span></td>'
         else:
-            matrix_html += f'<td style="padding: 0.8rem; text-align: center; {border_style}"><span style="color: #999;">—</span></td>'
+            row_html += f'<td style="padding: 1rem; text-align: center; {border_right} border-bottom: 1px solid #E0E0E0; background: #FFFFFF;"><span style="color: #BDBDBD; font-size: 1.2rem;">—</span></td>'
 
-    matrix_html += """
-                </tr>
-    """
+    # Close row and render
+    row_html += '</tr>'
+    st.markdown(row_html, unsafe_allow_html=True)
 
-matrix_html += """
-            </tbody>
-        </table>
-    </div>
+# Close table
+st.markdown("""
+        </tbody>
+    </table>
 </div>
-"""
-
-st.markdown(matrix_html, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # Legend
 st.markdown("""

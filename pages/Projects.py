@@ -46,84 +46,53 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Filter options
-st.markdown('<div class="section-header">Filter Projects</div>', unsafe_allow_html=True)
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    status_filter = st.selectbox(
-        "Status",
-        ["All", "Completed", "In Progress"],
-        key="status_filter"
-    )
-
-with col2:
-    # Get unique tech from all projects
-    all_tech = set()
-    for p in config.PROJECTS:
-        all_tech.update(p['tech_stack'])
-    tech_filter = st.selectbox(
-        "Technology",
-        ["All"] + sorted(list(all_tech)),
-        key="tech_filter"
-    )
-
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
 
-# Filter projects
-filtered_projects = config.PROJECTS
-
-if status_filter != "All":
-    filtered_projects = [p for p in filtered_projects if p['status'] == status_filter]
-
-if tech_filter != "All":
-    filtered_projects = [p for p in filtered_projects if tech_filter in p['tech_stack']]
-
-# Display projects count
-st.markdown(f'<div class="section-header">Showing {len(filtered_projects)} Projects</div>', unsafe_allow_html=True)
-
 # Project Grid
-for project in filtered_projects:
-    # Project Card
-    st.markdown(f"""
-    <div class="project-card">
-        <div class="project-image-container">
-            <div class="project-placeholder">Project Screenshot</div>
-        </div>
-    """, unsafe_allow_html=True)
+for project in config.PROJECTS:
+    # Tech stack tags
+    tech_tags_html = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack'][:6]])
 
-    st.markdown(f"""
+    # Learning Outcomes badges
+    los_badges = ''.join([f'<span class="lo-badge">{lo}</span>' for lo in project['learning_outcomes']])
+
+    # Project Card with side-by-side layout using columns
+    st.markdown('<div class="project-card">', unsafe_allow_html=True)
+
+    content_col, image_col = st.columns([2, 1])
+
+    with content_col:
+        st.markdown(f"""
         <div class="project-header">
             <h3>{project['title']}</h3>
             <div class="project-meta">{project['date']} | {project['status']}</div>
         </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
-    st.markdown(f"""
+        st.markdown(f"""
         <div class="project-body">
             <p><strong>{project['subtitle']}</strong></p>
             <p>{project['short_description']}</p>
-    """, unsafe_allow_html=True)
-
-    # Tech stack tags
-    tech_tags_html = ''.join([f'<span class="tech-tag">{tech}</span>' for tech in project['tech_stack'][:6]])  # Limit to 6
-    st.markdown(f"""
-            <div class="tech-label">Technologies</div>
-            <div class="tech-tags">{tech_tags_html}</div>
-    """, unsafe_allow_html=True)
-
-    # Learning Outcomes badges
-    los_badges = ''.join([f'<span class="lo-badge">{lo}</span>' for lo in project['learning_outcomes']])
-    st.markdown(f"""
-            <div style="margin-top: 1rem;">
-                <div class="tech-label">Learning Outcomes</div>
-                <div>{los_badges}</div>
-            </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+
+        # Tech tags
+        st.markdown('<div class="tech-label">Technologies</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="tech-tags">{tech_tags_html}</div>', unsafe_allow_html=True)
+
+        # Learning Outcomes
+        st.markdown('<div class="tech-label" style="margin-top: 1rem;">Learning Outcomes</div>', unsafe_allow_html=True)
+        st.markdown(f'<div>{los_badges}</div>', unsafe_allow_html=True)
+
+    with image_col:
+        st.markdown("""
+        <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 200px;">
+            <div class="project-placeholder">Project Screenshot</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
     # Buttons
     button_cols = st.columns([1, 1, 1, 2])
@@ -146,15 +115,6 @@ for project in filtered_projects:
             st.markdown('<div style="height: 38px;"></div>', unsafe_allow_html=True)
 
     st.markdown('<div style="margin-bottom: 2rem;"></div>', unsafe_allow_html=True)
-
-# If no projects match filters
-if len(filtered_projects) == 0:
-    st.markdown("""
-    <div class="card" style="text-align: center; padding: 3rem;">
-        <h3>No projects match your filters</h3>
-        <p style="color: var(--text-tertiary);">Try adjusting your filter criteria</p>
-    </div>
-    """, unsafe_allow_html=True)
 
 # Gradient Divider
 st.markdown('<div class="divider-gradient"></div>', unsafe_allow_html=True)
