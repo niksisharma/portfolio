@@ -359,6 +359,53 @@ PROJECTS = [
         "demo": None,
         "course": "IST 687 - Introduction to Data Science"
     },
+    {
+        "id": "jeopardy-search",
+        "title": "What is a Search Engine?",
+        "subtitle": "Semantic Search Engine for Jeopardy Questions",
+        "date": "Spring 2025",
+        "short_description": "Typo-tolerant, context-aware search engine built on 35 seasons of Jeopardy questions using semantic embeddings and spell correction for natural language queries.",
+        "description": "With the exponential growth of unstructured text on the web, finding relevant information efficiently has become a core challenge. Traditional keyword-based retrieval often misses semantically related content when queries and documents use different vocabularies. This project builds a miniature search engine that, given a user's natural language query, retrieves the top-k Jeopardy clue-answer pairs ranked by embedding similarity. The system handles typos through SymSpell correction and uses sentence transformers to capture semantic meaning beyond lexical overlap.",
+        "problem_statement": "Traditional keyword-based search misses semantically relevant content when queries use different vocabulary than documents. Need semantic retrieval system that handles typos and understands meaning, not just word overlap.",
+        "solution": "Semantic search engine using all-MiniLM-L6-v2 transformer embeddings for 350,000+ Jeopardy questions. Integrated SymSpell for typo correction and cosine similarity for efficient ranking. Clean HTML/JavaScript frontend for interactive querying.",
+        "tech_stack": ["Python", "sentence-transformers", "all-MiniLM-L6-v2", "SymSpell", "Flask", "HTML", "JavaScript", "Cosine Similarity"],
+        "my_role": "Built complete end-to-end system independently. Preprocessed 350,000+ Jeopardy entries (lowercasing, punctuation removal, cleaning unusual characters). Selected and implemented all-MiniLM-L6-v2 model for 384-dimensional sentence embeddings. Integrated SymSpell with frequency dictionary built from 100,000 most common corpus terms. Designed Flask API backend and clean HTML/JavaScript frontend. Wrote comprehensive technical report documenting NLP techniques, implementation, and evaluation.",
+        "technical_details": {
+            "dataset": "Kaggle Jeopardy dataset: 350,000+ entries spanning 35 seasons with category, clue, answer, value, air date",
+            "preprocessing": "Lowercasing, punctuation removal, regex cleaning of LaTeX and Unicode characters",
+            "embedding_model": "all-MiniLM-L6-v2: lightweight (22MB), 384-dimensional, strong zero-shot performance, low latency",
+            "spell_correction": "SymSpell with O(1) candidate generation using 100k-term frequency dictionary",
+            "retrieval": "Cosine similarity on normalized embeddings for efficient nearest-neighbor search",
+            "frontend": "Interactive HTML/JavaScript interface displaying top-5 results with similarity scores and categories",
+            "backend": "Flask API handling queries, preprocessing, embedding, and retrieval"
+        },
+        "results": {
+            "dataset_size": "350,000+ Jeopardy question-answer pairs processed",
+            "embedding_dimension": "384-dimensional semantic vectors",
+            "retrieval_quality": "High semantic similarity for natural language queries",
+            "typo_handling": "SymSpell successfully corrects misspellings before retrieval",
+            "example_query": "Who was the U.S. president born in Kentucky but grew up in Illinois? → Abraham Lincoln (0.92 similarity)"
+        },
+        "challenges": [
+            "Cleaning 350,000+ entries with inconsistent formatting and special characters",
+            "Balancing embedding model size vs quality (chose MiniLM for efficiency)",
+            "Building spell correction dictionary from corpus frequency statistics",
+            "Designing intuitive interface for displaying ranked results with metadata",
+            "Evaluating retrieval quality without labeled relevance judgments"
+        ],
+        "learning_outcomes": ["LO1", "LO2", "LO3", "LO4", "LO5"],
+        "lo_explanations": {
+            "LO1": "Processed 350,000+ Jeopardy entries from Kaggle, implemented data cleaning pipeline with regex patterns, stored embeddings efficiently for fast retrieval",
+            "LO2": "Built semantic search system enabling users to find relevant trivia questions using natural language, with applications to pub quizzes, study tools, and question-answering research",
+            "LO3": "Applied transformer-based sentence embeddings (all-MiniLM-L6-v2) for semantic similarity, visualized retrieval results with relevance scores and metadata",
+            "LO4": "Implemented complete NLP pipeline in Python: text preprocessing, transformer inference, spell correction algorithm, Flask API, frontend integration",
+            "LO5": "Wrote comprehensive technical report documenting NLP fundamentals, literature survey of embedding techniques, implementation details, and evaluation methodology"
+        },
+        "image": "assets/images/jeopardy-search.png",
+        "github": "https://github.com/niksisharma/jeopardy",
+        "demo": None,
+        "course": "IST 664 - Natural Language Processing"
+    },
 ]
 
 # Blog Post / Reflection
