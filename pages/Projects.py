@@ -85,11 +85,41 @@ for project in config.PROJECTS:
         st.markdown(f'<div>{los_badges}</div>', unsafe_allow_html=True)
 
     with image_col:
-        st.markdown("""
-        <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 220px; border-radius: 12px; overflow: hidden;">
-            <div class="project-placeholder" style="font-size: 1rem;">Project Screenshot</div>
-        </div>
-        """, unsafe_allow_html=True)
+        # Display project image if available, otherwise show placeholder
+        if project.get('image'):
+            from pathlib import Path
+            import os
+            image_path = Path(__file__).parent.parent / project['image']
+            if os.path.exists(image_path):
+                # Use custom HTML container for consistent sizing
+                from PIL import Image
+                img = Image.open(image_path)
+                st.markdown("""
+                <style>
+                .project-img-wrapper img {
+                    width: 100%;
+                    height: 250px;
+                    object-fit: cover;
+                    border-radius: 12px;
+                }
+                </style>
+                <div class="project-img-wrapper">
+                """, unsafe_allow_html=True)
+                st.image(img, use_column_width=True)
+                st.markdown("</div>", unsafe_allow_html=True)
+            else:
+                # Image file doesn't exist, show placeholder
+                st.markdown("""
+                <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 220px; border-radius: 12px; overflow: hidden;">
+                    <div class="project-placeholder" style="font-size: 3rem;">📸</div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.markdown("""
+            <div class="project-image-container" style="width: 100%; aspect-ratio: 4/3; min-height: 220px; border-radius: 12px; overflow: hidden;">
+                <div class="project-placeholder" style="font-size: 3rem;">📸</div>
+            </div>
+            """, unsafe_allow_html=True)
 
     st.markdown('</div>', unsafe_allow_html=True)
 

@@ -144,7 +144,7 @@ PROJECTS = [
         "LO5": "Presented business-focused online demo to class, explaining technical system in accessible terms and demonstrating practical value for researchers",
         "LO6": "Ensured transparency about model limitations, properly attributed authors, designed system to assist rather than replace human judgment in research evaluation"
     },
-    "image": "placeholder",
+    "image": "assets/images/rag-ception.png",
     "github": "https://github.com/niksisharma/ragception",
     "demo": None,
     "course": "IST 688 - Building Human Centered AI Applications"
@@ -191,7 +191,7 @@ PROJECTS = [
             "LO5": "Presented project to diverse audience on iSchool poster day, explaining space weather forecasting and LSTM predictions in accessible terms",
             "LO6": "Transparently reported both successes and limitations, acknowledging that accurate Kp predictions don't automatically translate to aurora visibility, identified need for additional factors in practical aurora forecasting"
         },
-        "image": "placeholder",
+        "image": "assets/images/aurora-prediction.png",
         "github": "https://github.com/niksisharma/aurora-prediction",
         "demo": None,
         "course": "IST 699 - Deep Learning in Practice"
@@ -236,7 +236,7 @@ PROJECTS = [
             "LO4": "Implemented sophisticated AI models in Python, built custom neural network components, designed training loops, applied optimization strategies for best performance from each architecture",
             "LO5": "Presented findings to advanced computer science class with technical focus, wrote conference-style technical paper documenting methodology and results"
         },
-        "image": "placeholder",
+        "image": "assets/images/capsnet.png",
         "github": "https://github.com/niksisharma/capsNet",
         "demo": None,
         "course": "CIS 788 - Artificial Neural Networks"
@@ -275,7 +275,7 @@ PROJECTS = [
             "LO3": "Applied multiple time-series predictive models and visualizations",
             "LO4": "Implemented comprehensive Python pipeline with multiple libraries"
         },
-        "image": "placeholder",
+        "image": "assets/images/airbnb-occupancy.png",
         "github": "https://github.com/niksisharma/airBnB",
         "demo": None,
         "course": "IST 707 - Applied Data Science"
@@ -314,7 +314,7 @@ PROJECTS = [
             "LO3": "Used network visualization and optimization models",
             "LO5": "Presented findings to campus transportation officials"
         },
-        "image": "placeholder",
+        "image": "assets/images/cusebus.png",
         "github": "https://github.com/niksisharma/cuseBus",
         "demo": None,
         "course": "IST 652 - Data Admin and Database Management Systems"
@@ -354,7 +354,7 @@ PROJECTS = [
             "LO5": "Communicated technical findings to facilities management",
             "LO6": "Considered environmental ethics in energy optimization"
         },
-        "image": "placeholder",
+        "image": "assets/images/energy-forecasting.png",
         "github": "https://github.com/niksisharma/energy-forecasting",
         "demo": None,
         "course": "IST 687 - Introduction to Data Science"
