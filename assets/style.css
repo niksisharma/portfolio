@@ -739,6 +739,24 @@ p {
     color: var(--text-primary);
 }
 
+/* Expander header font size increase */
+.streamlit-expanderHeader p {
+    font-size: 1.35rem !important;
+    font-weight: 600 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+}
+
+[data-testid="stExpander"] summary {
+    font-size: 1.35rem !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stExpander"] [data-testid="stMarkdownContainer"] p {
+    font-size: 1.35rem !important;
+    font-weight: 600 !important;
+}
+
 /* ===========================
    RESPONSIVE DESIGN
    =========================== */

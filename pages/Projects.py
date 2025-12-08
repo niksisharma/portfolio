@@ -66,7 +66,7 @@ for project in config.PROJECTS:
         st.markdown(f"""
         <div class="project-header">
             <h3>{project['title']}</h3>
-            <div class="project-meta">{project['date']} | {project['status']}</div>
+            <div class="project-meta">{project['date']}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -130,7 +130,6 @@ for project in config.PROJECTS:
 # Sort by usage
 sorted_tech = sorted(tech_count.items(), key=lambda x: x[1], reverse=True)
 
-st.markdown('<div class="card"><div class="card-body">', unsafe_allow_html=True)
 
 tech_html = '<div class="tech-tags" style="margin: 0;">'
 for tech, count in sorted_tech[:12]:  # Show top 12

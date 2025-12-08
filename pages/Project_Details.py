@@ -66,7 +66,7 @@ st.markdown(f"""
         {project['subtitle']}
     </p>
     <div style="margin-top: 1.5rem; font-size: 1.05rem; color: var(--text-tertiary);">
-        {project['date']} | {project['status']} | {project.get('course', 'Independent Project')}
+        {project['date']} | {project.get('course', 'Independent Project')}
     </div>
 </div>
 """, unsafe_allow_html=True)
