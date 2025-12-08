@@ -52,7 +52,6 @@ st.markdown(f"""
             <a class="nav-link" href="/Projects" target="_self">Projects</a>
             <a class="nav-link" href="/Reflection" target="_self">Reflection</a>
             <a class="nav-link" href="/Video" target="_self">Video</a>
-            <a class="nav-link" href="/About" target="_self">About</a>
         </div>
     </div>
 </div>
